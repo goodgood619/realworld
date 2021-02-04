@@ -50,7 +50,6 @@ div#banner {
 h3.home_banner {
     font-size : 3rem;
     padding-top: 2%;
-    margin-top : 0;
     margin-bottom : 0.25%;
 }
 
@@ -62,6 +61,7 @@ div.home_banner {
     background-color: rgb(88, 196, 88);
     width : 100%;
     padding-bottom: .5rem;
+    margin-bottom: 3%;
     color : white;
     text-align: center;
 }
@@ -70,6 +70,8 @@ div.home_banner {
 
 
 /* body content flex 지정 */
+
+
 @media(min-width : 768px){
     div.row {
         display : flex;
