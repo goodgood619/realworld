@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conduit</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+</head>
+
+<body>
+    <div>
+        <div id = "header"></div>
+        <div id = "banner"></div>
+        <div id = "body_data"></div>
+    </div>
+    <footer id = "footer"></footer>
+</body>
+<script>
+    $(function () {
+        $("#header").load("header.html")
+        $("#banner").load("banner.html")
+        $("#body_data").load("body_data.html")
+        $("#tag").load("tag.html")
+        $("#footer").load("footer.html")
+    })
+</script>
+
+</html>
