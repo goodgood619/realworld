@@ -8,29 +8,43 @@ function Article() {
     const [tagList,settagLists] = useState<Array<any>>([]);
     const [articleArray,setArticleArray] = useState<Array<any>>([]);
     const [articleCount,setArticleCount] = useState<number>(0);
+    const [curPage, setCurPage] = useState<number>(0);
 
     useEffect(()=>{
-        axios
-        .get("https://conduit.productionready.io/api/articles?limit=10&offset=0")
-        .then((res: any) => {
-            const articleArray : Array<any> = res.data.articles;
-            const articleCount :number = res.data.articlesCount;
-            setArticleArray(articleArray);
-            setArticleCount(articleCount);
-        });
-
         axios
         .get("https://conduit.productionready.io/api/tags")
         .then((res : any) => {
             const test : Array<any> = res.data.tags;
             settagLists(test);
         })
-    });
+    },[tagList]);
+
+    useEffect(() => {
+        const page = curPage*10;
+        axios
+        .get(`https://conduit.productionready.io/api/articles?limit=10&offset=${page}`)
+        .then((res: any) => {
+            const articleArray : Array<any> = res.data.articles;
+            const articleCount :number = res.data.articlesCount;
+            setArticleArray(articleArray);
+            setArticleCount(articleCount);
+        });
+    },[articleArray,articleCount,curPage])
+
+    const handleLikeSubmit = (slug : any) => {
+        console.log(slug);
+        const headers = {
+            'Authorization': 'Token jwt.token.here',
+        }
+        axios
+        .post(`https://conduit.productionready.io/api/articles/${slug}/favorite`,{headers})
+        .then((res:any)=>console.log(res));
+    }
 
     return (
 
         <div className = "row">
-            <ArticleDataLeft articleArray = {articleArray} articleCount = {articleCount}/>
+            <ArticleDataLeft articleArray = {articleArray} curPage = {[curPage,setCurPage]} likeSubmit = {handleLikeSubmit}/>
             <TagList tagList = {tagList}/>
         </div>
     );

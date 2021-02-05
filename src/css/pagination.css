@@ -20,6 +20,15 @@ a.page-link {
     float : left;
 }
 
+a.cur-page-link {
+    border : 1px solid gray;
+    color : green;
+    background:#5cb85c;
+    font-size : 1.2rem;
+    padding : .5rem .75rem;
+    position: relative;
+    float : left;
+}
 a.page-link:hover {
     background : gray;
     text-decoration: underline;
