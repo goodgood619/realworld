@@ -1,0 +1,22 @@
+div#banner {
+    margin-top : 2%;
+    margin-bottom : 5%;
+}
+
+h3.home_banner {
+    font-size : 3rem;
+    padding-top: 2%;
+    margin-bottom : 0.25%;
+}
+
+p.home_banner {
+    font-size : 1.3rem;
+}
+
+div.home_banner {
+    background-color: rgb(88, 196, 88);
+    width : 100%;
+    padding-bottom: .5rem;
+    color : white;
+    text-align: center;
+}

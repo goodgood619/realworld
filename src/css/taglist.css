@@ -1,0 +1,23 @@
+/* popular Tags 관련 */
+
+div.body_data_right_popular {
+    margin-top: -3%;
+    font-size : 0.89rem;
+}
+
+div.body_data_right_box {
+    background: #f3f3f3;
+    display: inline-block;
+    padding: 0% 7% 5% 3%;
+    margin-bottom : 5%;
+}
+
+a.body_data_right_tags {
+    background: rgba(10, 9, 9, 0.356);
+    border : 1px solid gray;
+    border-radius : 10px;
+    color : white;
+    display: inline-block;
+    margin-bottom : 3px;
+    margin-right : 3px;
+}

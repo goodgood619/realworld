@@ -1,0 +1,27 @@
+/* contents_head */
+
+div.contents_head {
+    display : block;
+    margin-top : 30px;
+}   
+
+div.contents_head_info {
+    display: inline-block;
+    margin : 1px 0px 1px 10px;
+}
+
+
+div.contents_like_button {
+    float : right;
+}
+
+img.like_button_image {
+    width : 15px; 
+    height : 15px;
+}
+
+/*  contents_body */
+
+div.contents_body {
+    margin-bottom: 30px;
+}
