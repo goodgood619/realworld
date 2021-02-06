@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 
 function Header() {
-    const userCheck = false;
+    const userCheck = true;
     if (!userCheck) {
         return (
 
@@ -17,7 +17,7 @@ function Header() {
                         <Link to = "/signin" className="nav_link">
                             &nbsp;&nbsp;Sign in
                         </Link>
-                        <Link to = "/signin" className="nav_link">
+                        <Link to = "/signup" className="nav_link">
                             &nbsp;&nbsp;Sign Up
                         </Link>
                     </ul>
@@ -34,11 +34,11 @@ function Header() {
                         <Link to = "/" className="nav_link">
                             Home&nbsp;
                         </Link>
-                        <Link to = "/signin" className="nav_link">
+                        <Link to = "/newpost" className="nav_link">
                             <img src="./image/newpost.PNG" className = "header_icon"/>
                             New Post&nbsp;&nbsp;
                         </Link>
-                        <Link to = "/signup" className = "nav_link">
+                        <Link to = "/settings" className = "nav_link">
                             <img src="./image/setting.PNG" className = "header_icon" />
                             Settings 
                         </Link>

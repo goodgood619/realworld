@@ -1,8 +1,14 @@
+import Header from "./header";
+import Footer from "./footer";
+import SettingsForm from "./settingsForm";
+
 function Settings() {
 
     return(
         <div>
-            settings
+          <Header/>
+          <SettingsForm/>
+          <Footer/>
         </div>
     );
 }

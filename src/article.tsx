@@ -34,12 +34,13 @@ function Article() {
     const handleLikeSubmit = (slug : any) => {
         console.log(slug);
         const headers = {
-            'Authorization': 'Token jwt.token.here',
+            'Authorization': 'Basic YWxhZGRpbjpvcGVuc2VzYW1l',
         }
         axios
         .post(`https://conduit.productionready.io/api/articles/${slug}/favorite`,{headers})
         .then((res:any)=>console.log(res));
-    }
+        
+    };
 
     return (
 
