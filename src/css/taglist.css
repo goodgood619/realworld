@@ -20,4 +20,9 @@ a.body_data_right_tags {
     display: inline-block;
     margin-bottom : 3px;
     margin-right : 3px;
+    cursor: pointer;
+    
+}
+a.body_data_right_tags:hover {
+    background: rgb(15, 14, 14);
 }

@@ -32,4 +32,5 @@ a.cur-page-link {
 a.page-link:hover {
     background : gray;
     text-decoration: underline;
+    cursor: pointer;
 }

@@ -4,12 +4,11 @@ import Banner from './banner';
 import Article from './article';
 
 function Home() {
-
     return (
         <>
             <Header />
-            <Banner />
-            <Article/>
+            <Banner profile = {""}/>
+            <Article profile ={""}/>
             <Footer />
         </>
     );

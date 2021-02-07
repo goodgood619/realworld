@@ -1,6 +1,7 @@
 import './css/taglist.css';
 
-function TagList(props: {tagList:Array<any>}) {
+function TagList(props: {tagList:Array<any>,curTag : [string,any]}) {
+    
     return (
         <div className="body_data_right">
             <div className="body_data_right_box">
@@ -9,7 +10,7 @@ function TagList(props: {tagList:Array<any>}) {
                 </div>
                 <div>
                     {props.tagList.map((item)=>(
-                        <a className = "body_data_right_tags">{item}</a>
+                        <a className = "body_data_right_tags" onClick = {() => props.curTag[1](item)}>{item}</a>
                     ))}
                 </div>
             </div>

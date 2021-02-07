@@ -1,8 +1,10 @@
 import './css/banner.css'
 
-function Banner() {
-    const userCheck = true;
-    if (!userCheck) {
+function Banner(props : {profile : any}) {
+    const userCheck = false;
+    const userName = props.profile.username;
+    const image = props.profile.image;
+    if (userName === undefined) {
         return (
             <div id="banner">
                 <div className="home_banner">
@@ -17,9 +19,9 @@ function Banner() {
             <div id="banner">
                 <div className="user_banner">
                     <div className="profile_banner">
-                        <img src="./image/github.PNG" className = "profile"/>
-                        <h4 className="home_banner">userNickname</h4>
-                        <button className="banner_button">+ Follow userNickname</button>
+                        <img src={image} className = "profile"/>
+                        <h4 className="home_banner">{userName}</h4>
+                        <button className="banner_button">+ Follow {userName}</button>
                     </div>
                 </div>
             </div>

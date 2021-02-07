@@ -1,7 +1,8 @@
+import { Link } from 'react-router-dom';
 import './css/content_item.css';
 
 
-function ContentItem(props: { articleArray: Array<any>,likeSubmit : any }) {
+function ContentItem(props: { articleArray: Array<any>, likeSubmit: any }) {
     let arr = props.articleArray;
     const contents = () => {
         let data: Array<any> = [];
@@ -11,7 +12,9 @@ function ContentItem(props: { articleArray: Array<any>,likeSubmit : any }) {
                     <div className="contents_head">
                         <img src={arr[i].author.image} width="32px" height="32px" />
                         <div className="contents_head_info">
-                            <a>{arr[i].author.username}</a>
+                            <Link to ={`/profile/${arr[i].author.username}`}>
+                                {arr[i].author.username}
+                            </Link>
                             {/* onClick으로 user Profile 관련 부분으로 이동시키면됨, 파라미터는 arr[i].author.username을 써서 보내자 */}
                             <br />
                             <span>{arr[i].createdAt}</span>
@@ -24,9 +27,15 @@ function ContentItem(props: { articleArray: Array<any>,likeSubmit : any }) {
                         </div>
                     </div>
                     <div className="contents_body">
-                        <h3>{arr[i].title}</h3>
-                        <p>{arr[i].description}</p>
-                        <span> read more...</span>
+                        <a>
+                            <h3>{arr[i].title}</h3>
+                            <p>{arr[i].description}</p>
+                            <span> read more...</span>
+                            <ul>
+                                <li>taglist1</li>
+                                <li>taglist2</li>
+                            </ul>
+                        </a>
                     </div>
                     <hr />
                 </>

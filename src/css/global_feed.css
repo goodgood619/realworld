@@ -1,8 +1,11 @@
 li.global_feed {
-    color : green;
+    color : black;
     padding-right : 1.25rem;
     float : left;
+    text-decoration: underline;
+    cursor: pointer;
+}
+li.global_feed:active {
+    color : green;
 }
 
-div.global_feed {
-}
