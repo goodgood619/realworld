@@ -15,13 +15,13 @@ function SignupForm() {
             <form className="signinForm">
                 <fieldset>
                     <fieldset>
-                    <input className="signinInput" type="name" placeholder = "Username"/>
+                    <input className="post" type="name" placeholder = "Username"/>
                     </fieldset>
                     <fieldset>
-                    <input className="signinInput" type="email" placeholder = "Email"/>
+                    <input className="post" type="email" placeholder = "Email"/>
                     </fieldset>
                     <fieldset>
-                    <input className="signinInput" type="password" placeholder = "Password"/>
+                    <input className="post" type="password" placeholder = "Password"/>
                     </fieldset>
                     <button className="signin">Sign up</button>
                 </fieldset>

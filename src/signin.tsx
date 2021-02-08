@@ -1,12 +1,12 @@
 import Header from './header';
 import Footer from './footer';
 import SigninForm from './signinForm';
-function Signin() {
+function Signin(props: {match:any,history:any}) {
 
     return(
         <>
             <Header />
-            <SigninForm/>
+            <SigninForm match = {props.match} history = {props.history}/>
             <Footer />
         </>
     );

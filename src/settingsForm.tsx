@@ -1,6 +1,11 @@
 import './css/settingsForm.css';
 
-function SettingsForm() {
+function SettingsForm(props : {history : any}) {
+    const handleLogout = (e : any) => {
+        e.preventDefault();
+        localStorage.clear();
+        props.history.push("/");
+    };
     return (
         <div className = "newpost">
                 <h1 className = "setting">Your Settings</h1>
@@ -25,7 +30,7 @@ function SettingsForm() {
                 </fieldset>
             </form>
             <hr/>
-            <button className = "logout">Or click here to logout.</button>
+            <button className = "logout" onClick = {handleLogout}>Or click here to logout.</button>
         </div>
     );
 }

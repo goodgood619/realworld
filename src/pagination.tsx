@@ -1,11 +1,11 @@
 import './css/pagination.css';
 
-function Pagination(props : {curPage : [number,any]}) {
+function Pagination(props : {curPage : [number,any],articleCount : number}) {
 
     const makeButton: any = () => {
         let data : Array<any> = [];
         const [curpage, setCurPage] = props.curPage;
-        for(let i = 0 ;i < 50;i++) {
+        for(let i = 0 ;i < props.articleCount;i++) {
             data.push(
                 <li className = "page">
                     {

@@ -25,7 +25,7 @@ input.post {
     border-radius: 1px;
     font-size : 1.25rem;
     width : 100%;
-    box-sizing: border-box;
+    box-sizing: inherit;
 }
 
 form.signinForm {

@@ -1,4 +1,8 @@
 /* body content flex 지정 */
+div.row { 
+    margin-top : 5%;
+}
+
 @media(min-width : 768px){
     div.row {
         display : flex;

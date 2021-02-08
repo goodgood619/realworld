@@ -1,10 +1,12 @@
 import './css/banner.css'
+import {Link} from 'react-router-dom';
+
 
 function Banner(props : {profile : any}) {
-    const userCheck = false;
-    const userName = props.profile.username;
+    const profileUserName = props.profile.username;
+    const userName = localStorage.getItem('username');
     const image = props.profile.image;
-    if (userName === undefined) {
+    if (profileUserName === undefined) {
         return (
             <div id="banner">
                 <div className="home_banner">
@@ -20,8 +22,15 @@ function Banner(props : {profile : any}) {
                 <div className="user_banner">
                     <div className="profile_banner">
                         <img src={image} className = "profile"/>
-                        <h4 className="home_banner">{userName}</h4>
-                        <button className="banner_button">+ Follow {userName}</button>
+                        <h4 className="home_banner">{profileUserName}</h4>
+                        {
+                            userName === profileUserName ? 
+                            <Link to = "/settings">
+                                <button className="banner_button">Edit Profile Settings</button>
+                            </Link>
+                             :
+                            <button className="banner_button">+ Follow {profileUserName}</button>
+                        }
                     </div>
                 </div>
             </div>

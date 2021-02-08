@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom';
 
 
 function Header() {
-    const userCheck = true;
-    if (!userCheck) {
+    const userName = localStorage.getItem('username');
+    if (userName === null) {
         return (
 
             <div>
@@ -41,6 +41,9 @@ function Header() {
                         <Link to = "/settings" className = "nav_link">
                             <img src="./image/setting.PNG" className = "header_icon" />
                             Settings 
+                        </Link>
+                        <Link to = "/userprofile" className="nav_link">
+                            &nbsp;&nbsp;{userName}
                         </Link>
                     </ul>
                 </nav>

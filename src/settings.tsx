@@ -2,12 +2,12 @@ import Header from "./header";
 import Footer from "./footer";
 import SettingsForm from "./settingsForm";
 
-function Settings() {
+function Settings(props: {history:any}) {
 
     return(
         <div>
           <Header/>
-          <SettingsForm/>
+          <SettingsForm history = {props.history}/>
           <Footer/>
         </div>
     );

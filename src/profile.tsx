@@ -10,19 +10,18 @@ function Profile(props: {match :any}) {
     console.log('profile userName : ',userName);
     const [username,setUserName] = useState<string>(userName);
     const [profile, setProfile] = useState<any>({});
-    const [articleArray,setArticleArray] = useState<Array<any>>([]);
 
     useEffect(()=> {
 
         axios
-        .get(`https://conduit.productionready.io/api/profiles/${username}`)
+        .get(`https://conduit.productionready.io/api/profiles/${userName}`)
         .then((res:any)=> {
             let profile = res.data.profile;
-            setUserName(username);
+            setUserName(userName);
             setProfile(profile);
             console.log('profile : ',profile);
         });
-    },[username]);
+    },[userName]);
 
     return (
         <div>
