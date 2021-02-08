@@ -9,6 +9,7 @@ import Settings from './settings';
 import Profile from './profile';
 import UserHome from './userHome';
 import UserProfile from './userProfile';
+import Comment from './comment';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path = "/userHome" component = {UserHome} exact = {true}/>
       <Route path = "/profile/:userName"  component = {Profile} exact = {true}/>
       <Route path = "/userprofile" component = {UserProfile} exact = {true}/>
+      <Route path = "/comment" component = {Comment} exact={true}/>
     </>
   );
 }

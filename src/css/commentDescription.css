@@ -1,0 +1,52 @@
+div.comment {
+    margin-left : 15%;
+    margin-right : 15%;
+}
+
+div.comment_description {
+    padding-bottom : 5%;
+}
+
+div.comment_sign {
+    margin-top : 5%;
+    margin-left : 35%;
+}
+
+div.comment_list {
+    margin-top : 5%;
+    margin-left : 15%;
+    margin-right: 10%;
+    margin-bottom: 5%;
+    width : 65%;
+}
+
+textarea.comment_textarea {
+    width  : 100%;
+    padding : .75rem 1.25rem 2.5rem .75rem;
+    box-sizing: border-box;
+}
+
+div.comment_footer_user {
+    display: block;
+    background: gray;
+    width : 100%;
+    padding : .75rem 0 .75rem .75rem;
+    box-sizing: border-box;
+    margin-bottom: 5%;
+}
+
+div.comment_footer {
+    display : block;
+    width : 100%;
+    background: gray;
+    padding : .75rem 0 .75rem .75rem;
+    box-sizing: border-box;
+}
+
+button.comment_post {
+    float : right;
+    background : green;
+    color : white;
+    margin : .40em 1.25rem;
+    padding : .40rem .75rem;
+}
