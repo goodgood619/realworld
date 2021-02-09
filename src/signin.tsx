@@ -1,5 +1,4 @@
 import Header from './header';
-import Footer from './footer';
 import SigninForm from './signinForm';
 function Signin(props: {match:any,history:any}) {
 
@@ -7,7 +6,6 @@ function Signin(props: {match:any,history:any}) {
         <>
             <Header />
             <SigninForm match = {props.match} history = {props.history}/>
-            <Footer />
         </>
     );
 }

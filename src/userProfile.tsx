@@ -1,7 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import Article from "./article";
 import Banner from "./banner";
-import Footer from "./footer";
 import Header from "./header";
 import axios from 'axios';
 
@@ -26,7 +25,6 @@ function UserProfile() {
             <Header />
             <Banner profile={profile}/>
             <Article profile={profile}/>
-            <Footer/>
         </div>
     );
 }

@@ -7,7 +7,7 @@ function SettingsForm(props : {history : any}) {
         props.history.push("/");
     };
     return (
-        <div className = "newpost">
+        <div className = "setting">
                 <h1 className = "setting">Your Settings</h1>
                 <form className="signinForm">
                 <fieldset>
@@ -18,7 +18,7 @@ function SettingsForm(props : {history : any}) {
                     <input className="post" type="text" placeholder = "닉네임"/>
                     </fieldset>
                     <fieldset>
-                    <input className="post_article" type="text" placeholder = "Settings "/>
+                    <input className="post_article" type="text" placeholder = "Settings"/>
                     </fieldset>
                     <fieldset>
                     <input className="post" type="text" value = "ID"/>

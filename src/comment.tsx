@@ -1,16 +1,20 @@
-import Banner from "./banner";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import CommentBanner from "./commentBanner";
 import CommentDescription from "./commentDescription";
 import Header from "./header";
 
-function Comment(props : {state: any}) {
-    const title = props.state;
-    console.log(title);
+function Comment(props: { match: any, history: any, location: any }) {
+    console.log('comment props : ', props);
+    const state = props.location.state;
+
     return (
         <>
-        <Header/>
-        <CommentBanner/>
-        <CommentDescription/>
+            <Header />
+            <CommentBanner title={state.title} body={state.body} author  = {state.author} createdAt={state.createdAt}
+            description = {state.description} tagList = {state.tagList} history = {props.history} slug = {state.slug}/>
+            <CommentDescription description={state.description} tagList={state.tagList}
+            slug = {state.slug}/>
         </>
     );
 }

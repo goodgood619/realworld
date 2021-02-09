@@ -24,6 +24,12 @@ ul.ul_head {
 
 a.nav_link {
     font-size :0.9rem;
+    color : black;
+}
+
+a.comment_sign {
+    font-size : 0.9rem;
+    color : green;
 }
 
 img.header_icon {

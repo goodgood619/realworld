@@ -19,3 +19,13 @@ code {
  * {
    list-style: none;
  }
+
+ .link {
+   color : black;
+ }
+ .link-title {
+   color : green;
+ }
+ .link-title:hover {
+   text-decoration: underline;
+ }

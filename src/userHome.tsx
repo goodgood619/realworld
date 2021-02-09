@@ -1,5 +1,4 @@
 import Header from './header';
-import Footer from './footer';
 import Article from './article';
 
 function UserHome() {
@@ -7,7 +6,6 @@ function UserHome() {
         <>
             <Header />
             <Article profile ={""}/>
-            <Footer />
         </>
     );
 

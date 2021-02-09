@@ -149,14 +149,16 @@ function Article(props: { profile: any }) {
 
     const handleLikeSubmit = (slug: any) => {
         console.log(slug);
-    
         axios
-            .post(`https://conduit.productionready.io/api/articles/${slug}/favorite`,{
+            .post(`https://conduit.productionready.io/api/articles/${slug}/favorite`,{},{
                 headers : {
-                    'Authorization': localStorage.getItem('token')
+                    "Authorization" : `Token ${localStorage.getItem('token')}`
                 }
             })
-            .then((res: any) => console.log(res));
+            .then((res: any) => console.log(res))
+            .catch((err:any)=>{
+                console.log(err);
+            })
 
     };
 

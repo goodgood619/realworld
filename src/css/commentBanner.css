@@ -14,4 +14,17 @@ h1.comment_title {
 div.comment_author {
     display: inline-block;
     margin : 0 0 0 5px;
+    width : 80%;
+}
+
+button.comment_edit_user {
+    margin-left : 3%;
+    border : 1px solid gray;
+    background-color: none;
+    color : gray;
+}
+
+button.comment_delete_user {
+    border : 1px solid red;
+    color : red;
 }

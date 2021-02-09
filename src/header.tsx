@@ -9,7 +9,9 @@ function Header() {
 
             <div>
                 <nav className="nav_header">
-                    <a className="left_header">conduit</a>
+                    <Link to ="/" className = "left_header">
+                    conduit
+                    </Link>
                     <ul className="ul_head">
                         <Link to = "/" className = "nav_link">
                             Home
@@ -35,11 +37,11 @@ function Header() {
                             Home&nbsp;
                         </Link>
                         <Link to = "/newpost" className="nav_link">
-                            <img src="./image/newpost.PNG" className = "header_icon"/>
+                            <img src="./image/newpost.PNG" className = "header_icon" alt=""/>
                             New Post&nbsp;&nbsp;
                         </Link>
                         <Link to = "/settings" className = "nav_link">
-                            <img src="./image/setting.PNG" className = "header_icon" />
+                            <img src="./image/setting.PNG" className = "header_icon" alt=""/>
                             Settings 
                         </Link>
                         <Link to = "/userprofile" className="nav_link">

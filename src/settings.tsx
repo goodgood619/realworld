@@ -1,5 +1,4 @@
 import Header from "./header";
-import Footer from "./footer";
 import SettingsForm from "./settingsForm";
 
 function Settings(props: {history:any}) {
@@ -8,7 +7,6 @@ function Settings(props: {history:any}) {
         <div>
           <Header/>
           <SettingsForm history = {props.history}/>
-          <Footer/>
         </div>
     );
 }

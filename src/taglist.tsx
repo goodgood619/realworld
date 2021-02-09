@@ -10,7 +10,7 @@ function TagList(props: {tagList:Array<any>, profile : any, curTag : [string,any
                         <p>Popular Tags</p>
                     </div>
                     <div>
-                        {props.tagList.map((item)=>(
+                        {props.tagList.map((item : any,index : any)=>(
                             <a className = "body_data_right_tags" onClick = {() => {props.curTag[1](item); props.preTag[1](props.curTag[0]);}}>{item}</a>
                         ))}
                     </div>
