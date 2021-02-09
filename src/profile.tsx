@@ -21,13 +21,13 @@ function Profile(props: {match :any}) {
             setProfile(profile);
             console.log('profile : ',profile);
         });
-    },[profileuserName]);
+    },[profileuserName,setProfile]);
 
     if(userName !== profileuserName) {
         return (
             <div>
                 <Header/>
-                <Banner profile = {profile}/>
+                <Banner profile = {[profile,setProfile]}/>
                 <Article profile = {profile}/>
             </div>
         );

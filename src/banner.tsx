@@ -1,11 +1,43 @@
 import './css/banner.css'
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 
-function Banner(props : {profile : any}) {
-    const profileUserName = props.profile.username;
+function Banner(props : {profile : [any,any]}) {
+    const profileUserName = props.profile[0].username;
     const userName = localStorage.getItem('username');
-    const image = props.profile.image;
+    const image = props.profile[0].image;
+    const following = props.profile[0].following;
+    const handleFollow = () => {
+
+        axios
+        .post(`https://conduit.productionready.io/api/profiles/${profileUserName}/follow`,{},{
+            headers : {
+                "Authorization" : `Token ${localStorage.getItem('token')}`
+            }
+        })
+        .then((res:any)=>{
+            props.profile[1](res.data.profile);
+        })
+        .catch((err:any)=> {
+            console.log(err);
+        })
+    };
+
+    const handleUnFollow = ()=> {
+        axios
+        .delete(`https://conduit.productionready.io/api/profiles/${profileUserName}/follow`,{
+            headers : {
+                "Authorization" : `Token ${localStorage.getItem('token')}`
+            }
+        })
+        .then((res:any)=>{
+            props.profile[1](res.data.profile);
+        })
+        .catch((err:any)=>{
+            console.log(err);
+        });
+    };
     if (profileUserName === undefined) {
         return (
             <div id="banner">
@@ -26,10 +58,10 @@ function Banner(props : {profile : any}) {
                         {
                             userName === profileUserName ? 
                             <Link to = "/settings">
-                                <button className="banner_button">Edit Profile Settings</button>
+                                <button className="edit_button">Edit Profile Settings</button>
                             </Link>
                              :
-                            <button className="banner_button">+ Follow {profileUserName}</button>
+                            <button className={following === false ? "unfollow" : "follow"} onClick = {following===false ? handleFollow : handleUnFollow}>+ Follow {profileUserName}</button>
                         }
                     </div>
                 </div>

@@ -10,7 +10,7 @@ function Home() {
         return (
             <>
                 <Header />
-                <Banner profile = {""}/>
+                <Banner profile = {["",""]}/>
                 <Article profile ={""}/>
             </>
         );

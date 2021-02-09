@@ -1,11 +1,11 @@
 import ContentItem from "./content_item";
 import Pagination from "./pagination";
 
-function Contents(props : {articleArray : Array<any>,curPage : [number,any],likeSubmit : any,articleCount : number}) {
+function Contents(props : {article : [Array<any>,number],curPage : [number,any],likeSubmit : any}) {
     return (
         <div className = "contents">
-            <ContentItem articleArray = {props.articleArray} likeSubmit = {props.likeSubmit} />
-            <Pagination curPage = {props.curPage} articleCount = {props.articleCount}/>
+            <ContentItem articleArray = {props.article[0]} likeSubmit = {props.likeSubmit} />
+            <Pagination curPage = {props.curPage} articleCount = {props.article[1]}/>
         </div>
     );
 }

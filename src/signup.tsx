@@ -1,11 +1,11 @@
 import Header from './header';
 import SignupForm from './signupForm';
-function Signup() {
+function Signup(props : {history : any}) {
 
     return(
         <>
             <Header />
-            <SignupForm/>
+            <SignupForm history = {props.history}/>
         </>
     );
 }

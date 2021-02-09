@@ -6,8 +6,7 @@ import axios from 'axios';
 
 function Article(props: { profile: any }) {
     const [tagList, settagLists] = useState<Array<any>>([]);
-    const [articleArray, setArticleArray] = useState<Array<any>>([]);
-    const [articleCount,setArticleCount]= useState<number>(0);
+    const [article, setArticle] = useState<[Array<any>,any]>([[],0]);
     const [curPage, setCurPage] = useState<number>(0);
     const [curTag, setcurTag] = useState<string>("");
     const [preTag, setPreTag] = useState<string>("");
@@ -39,9 +38,8 @@ function Article(props: { profile: any }) {
                 .then((res:any)=>{
                     const articleArray: Array<any> = res.data.articles;
                     const totalArticles : number = res.data.articlesCount;
-                    setArticleArray(articleArray);
+                    setArticle([articleArray,totalArticles/5]);
                     console.log(articleArray);
-                    setArticleCount(totalArticles/5);
                 });
             }
             else if(curProfileTag !== "" && page === 0){
@@ -50,9 +48,8 @@ function Article(props: { profile: any }) {
                 .then((res:any)=>{
                     const articleArray: Array<any> = res.data.articles;
                     const totalArticles : number = res.data.articlesCount; 
-                    setArticleArray(articleArray);
+                    setArticle([articleArray,totalArticles/5]);
                     console.log(articleArray);
-                    setArticleCount(totalArticles/5);
                 });
             }
             else if(curProfileTag !== "" && page !==0) {
@@ -61,7 +58,7 @@ function Article(props: { profile: any }) {
                 .get(`https://conduit.productionready.io/api/articles?favorited=${profileUsername}&limit=5&offset=${page}`)
                 .then((res:any)=>{
                     const articleArray: Array<any> = res.data.articles;
-                    setArticleArray(articleArray);
+                    setArticle([articleArray,article[1]]);
                     console.log(articleArray);
                 });
                 }
@@ -76,7 +73,7 @@ function Article(props: { profile: any }) {
                     .get(`https://conduit.productionready.io/api/articles?author=${profileUsername}&limit=5&offset=${page}`)
                     .then((res:any)=>{
                         const articleArray: Array<any> = res.data.articles;
-                        setArticleArray(articleArray);
+                        setArticle([articleArray,article[0]]);
                         console.log(articleArray);
                     });
                 }
@@ -96,8 +93,7 @@ function Article(props: { profile: any }) {
                     .then((res: any) => {
                         const articleArray: Array<any> = res.data.articles;
                         const totalArticles : number = res.data.articlesCount;
-                        setArticleArray(articleArray);
-                        setArticleCount(totalArticles/10);
+                        setArticle([articleArray,totalArticles/10]);
                     });
             }
             // tag가 선택이 되었고 page를 움직이는 상황
@@ -108,7 +104,7 @@ function Article(props: { profile: any }) {
                     .get(`https://conduit.productionready.io/api/articles?tag=${curTag}&limit=10&offset=${page}`)
                     .then((res: any) => {
                         const articleArray: Array<any> = res.data.articles;
-                        setArticleArray(articleArray);
+                        setArticle([articleArray,article[1]]);
                     });
                 }
                 // 다른 tag로 바꾸는 경우 다시 page는 0으로 
@@ -124,7 +120,7 @@ function Article(props: { profile: any }) {
                     .get(`https://conduit.productionready.io/api/articles?limit=10&offset=${page}`)
                     .then((res: any) => {
                         const articleArray: Array<any> = res.data.articles;
-                        setArticleArray(articleArray);
+                        setArticle([articleArray,article[1]]);
                     });
                 }
                 // 다른 tag로 바꾸는 경우 page는 0으로
@@ -140,15 +136,13 @@ function Article(props: { profile: any }) {
                     .then((res: any) => {
                         const articleArray: Array<any> = res.data.articles;
                         const totalArticles : number = res.data.articlesCount;
-                        setArticleArray(articleArray);
-                        setArticleCount(totalArticles/10);
+                        setArticle([articleArray,totalArticles/10]);
                     });
             }
         }
-    }, [curTag, curPage,preTag,curProfileTag,preProfileTag,articleCount,props.profile.username]);
+    }, [curTag, curPage,preTag,curProfileTag,preProfileTag,props.profile.username]);
 
     const handleLikeSubmit = (slug: any) => {
-        console.log(slug);
         axios
             .post(`https://conduit.productionready.io/api/articles/${slug}/favorite`,{},{
                 headers : {
@@ -165,10 +159,9 @@ function Article(props: { profile: any }) {
     return (
 
         <div className="row">
-            <ArticleDataLeft articleArray={articleArray} curPage={[curPage, setCurPage]} likeSubmit={handleLikeSubmit}
+            <ArticleDataLeft article={article} curPage={[curPage, setCurPage]} likeSubmit={handleLikeSubmit}
                 curTag={[curTag, setcurTag]} profile={props.profile} preTag = {[preTag,setPreTag]} 
-                curProfileTag = {[curProfileTag,setcurProfileTag]} preProfileTag = {[preProfileTag,setpreProfileTag]}
-                articleCount = {articleCount}/>
+                curProfileTag = {[curProfileTag,setcurProfileTag]} preProfileTag = {[preProfileTag,setpreProfileTag]}/>
             <TagList tagList={tagList} profile = {props.profile} curTag={[curTag, setcurTag]} preTag = {[preTag, setPreTag]}/>
         </div>
     );

@@ -35,8 +35,16 @@ div.profile_banner {
     padding-top : 2%;
 }
 
-button.banner_button {
+button.edit_button {
     float : right;
+}
+
+button.unfollow {
+    float : right;
+}
+button.follow {
+    float : right;
+    background : gray;
 }
 
 h4.home_banner {

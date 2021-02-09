@@ -13,18 +13,24 @@ function SigninForm(props: {match:any,history:any}) {
         console.log(id);
         console.log(password);
         const data = {
-            "user": {
-            "email" : id, 
-            "password" : password}
+            "user" : {
+                "email" : id, 
+                "password" : password
+            }
         };
-        console.log(JSON.stringify(data));
+        console.log(data);
         axios
         .post('https://conduit.productionready.io/api/users/login',data)
         .then((res:any)=>{
             const data = res.data.user;
             localStorage.setItem('token',data.token);
             localStorage.setItem('username',data.username);
-            props.history.push("/userHome");
+            props.history.push("/userHome",{
+                email : data.email,
+                username : data.username,
+                bio : data.bio,
+                image : data.image
+            });
         })
         .catch((err: any)=>{
             console.log(err);
@@ -48,7 +54,7 @@ function SigninForm(props: {match:any,history:any}) {
                     <input className="post" type="email" placeholder = "Email" onChange = {e=> setId(e.target.value)}/>
                     </fieldset>
                     <fieldset>
-                    <input className="post" type="password" placeholder = "Password"onChange = {e=> setPassword(e.target.value)}/>
+                    <input className="post" type="password" placeholder = "Password" onChange = {e=> setPassword(e.target.value)}/>
                     </fieldset>
                     <button className="signin" type = "submit">Sign in</button>
                 </fieldset>

@@ -20,7 +20,7 @@ function NewPost(props : {history : any, location : any}) {
             <div>
                 <Header />
                 <NewpostForm history = {props.history} title = {""} body = {""}
-                description = {""} tagList = {[]} edit = {false} slug = {state.slug}/>
+                description = {""} tagList = {[]} edit = {false} slug = {""}/>
             </div>
         );
     }
