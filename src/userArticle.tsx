@@ -105,7 +105,7 @@ function UserArticle(props: { profile: any }) {
             }
             else {
                 axios
-                    .get(`https://conduit.productionready.io/api/articles?&limit=10`, headers)
+                    .get(`https://conduit.productionready.io/api/articles?limit=10`, headers)
                     .then((res: any) => {
                         const articleArray: Array<any> = res.data.articles;
                         const totalArticles: number = res.data.articlesCount;

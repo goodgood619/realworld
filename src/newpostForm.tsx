@@ -76,16 +76,16 @@ function NewpostForm(props: { history: any, title: string, description: string, 
             <form className="signinForm" onSubmit={handlePost}>
                 <fieldset>
                     <fieldset>
-                        <input className="post" type="text" placeholder="Article Title" onChange={e => setnewArticleTitle(e.target.value)}  />
+                        <input className="post" type="text" placeholder="Article Title" defaultValue = {props.title} onChange={e => setnewArticleTitle(e.target.value)}  />
                     </fieldset>
                     <fieldset>
-                        <input className="post" type="text" placeholder="What's this article about?" onChange={e => setnewArticleAbout(e.target.value)}  />
+                        <input className="post" type="text" placeholder="What's this article about?" defaultValue = {props.description} onChange={e => setnewArticleAbout(e.target.value)}  />
                     </fieldset>
                     <fieldset>
-                        <input className="post_article" type="text" placeholder="Write your article(in markdown)" onChange={e => setnewArticleComment(e.target.value)}  />
+                        <input className="post_article" type="text" placeholder="Write your article(in markdown)" defaultValue = {props.body} onChange={e => setnewArticleComment(e.target.value)}  />
                     </fieldset>
                     <fieldset>
-                        <input className="post" type="text" placeholder="Enter tags" onChange={e => setnewArticleTags(e.target.value)} />
+                        <input className="post" type="text" placeholder="Enter tags" defaultValue = {props.tagList} onChange={e => setnewArticleTags(e.target.value)} />
                     </fieldset>
                     <button className="signin" type="submit">Publish Article</button>
                 </fieldset>

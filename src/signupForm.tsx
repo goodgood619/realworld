@@ -25,12 +25,18 @@ function SignupForm(props : {history : any}) {
             const user = res.data.user;
             localStorage.setItem('username',user.username);
             localStorage.setItem('token',user.token);
+            localStorage.setItem('email',user.email);
+            localStorage.setItem('bio',user.bio);
+            localStorage.setItem('image',user.image);
             props.history.push("/userHome",{
 
             });
         })
         .catch((err:any)=>{
-
+            const error = err.response;
+            if(error.status >=400) {
+                alert('username 혹은 email이 중복됩니다. 다시 입력해주세요');
+            }
         });
     };
 

@@ -22,6 +22,9 @@ function SigninForm(props: {match:any,history:any}) {
             const data = res.data.user;
             localStorage.setItem('token',data.token);
             localStorage.setItem('username',data.username);
+            localStorage.setItem('email',data.email);
+            localStorage.setItem('bio',data.bio);
+            localStorage.setItem('image',data.image);
             props.history.push("/userHome",{
                 email : data.email,
                 username : data.username,
