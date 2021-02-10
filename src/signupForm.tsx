@@ -29,7 +29,6 @@ function SignupForm(props : {history : any}) {
             localStorage.setItem('bio',user.bio);
             localStorage.setItem('image',user.image);
             props.history.push("/userHome",{
-
             });
         })
         .catch((err:any)=>{

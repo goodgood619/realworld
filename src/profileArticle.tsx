@@ -42,6 +42,7 @@ function ProfileArticle(props: { profile: any }) {
                     const articleArray: Array<any> = res.data.articles;
                     const totalArticles: number = res.data.articlesCount;
                     setArticle([articleArray, totalArticles / 5]);
+                    setpreProfileTag(curProfileTag);
                     console.log(articleArray);
                 });
         }

@@ -15,16 +15,16 @@ function SettingsForm(props: { history: any }) {
         localStorage.clear();
         props.history.push("/");
     };
-
     const handleUpdate = () => {
         const data = {
-            "user" : {
-                "email" : id,
-                "bio" : article,
-                "image" : image,
-                "username" : nickname,
-                "password" : password
-            }
+            "user" : { 
+                                          
+            "email" : id,
+            "bio" : article,
+            "image" : image,
+            "username" : nickname,
+            "password" : password
+        }
         };
         axios
             .put(`https://conduit.productionready.io/api/user`,data,{
