@@ -1,8 +1,8 @@
 import React,{useState,useEffect} from 'react';
-import Article from "./article";
 import Banner from "./banner";
 import Header from "./header";
 import axios from 'axios';
+import ProfileArticle from './profileArticle';
 
 
 function UserProfile() {
@@ -25,7 +25,7 @@ function UserProfile() {
     if(loading === true) {
         return (
             <>
-                데이터가 로딩중입니다...
+                <h1>데이터가 로딩중입니다...</h1>
             </>
         );
     }
@@ -34,7 +34,7 @@ function UserProfile() {
             <div>
                 <Header />
                 <Banner profile={[profile,setProfile]}/>
-                <Article profile={profile}/>
+                <ProfileArticle profile={profile}/>
             </div>
         );
     }

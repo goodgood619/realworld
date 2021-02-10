@@ -9,13 +9,13 @@ function GlobalFeed(props : {curTag : [string,any],profile : any,preTag : [strin
             <>
             <div className="global_feed">
                 {
-                    userName !== null ? <li className ="global_feed" onClick = {()=> props.curTag[1](undefined)}>Your Feed</li> : <></> 
+                    userName !== null ? <li className ="global_feed" onClick = {()=> props.curTag[1]("")}>Your Feed</li> : <></> 
                 }
-                <li className="global_feed" onClick = {()=> {props.curTag[1](""); props.preTag[1](props.curTag[0]);}}>
+                <li className="global_feed" onClick = {()=> {props.curTag[1]("global"); props.preTag[1](props.curTag[0]);}}>
                     Global Feed
                 </li>
                 <li className="global_feed">
-                    {props.curTag[0]}
+                    {props.curTag[0] === "global"?"" :props.curTag[0]}
                 </li>
             </div>
             <br/>

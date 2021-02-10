@@ -18,6 +18,7 @@ a.page-link {
     padding : .5rem .75rem;
     position: relative;
     float : left;
+    border-radius: 3px;
 }
 
 a.cur-page-link {
@@ -28,6 +29,7 @@ a.cur-page-link {
     padding : .5rem .75rem;
     position: relative;
     float : left;
+    border-radius: 3px;
 }
 a.page-link:hover {
     background : gray;

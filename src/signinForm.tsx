@@ -10,15 +10,12 @@ function SigninForm(props: {match:any,history:any}) {
 
     const handleSignin = (e : any)=> {
         e.preventDefault(); 
-        console.log(id);
-        console.log(password);
         const data = {
             "user" : {
                 "email" : id, 
                 "password" : password
             }
         };
-        console.log(data);
         axios
         .post('https://conduit.productionready.io/api/users/login',data)
         .then((res:any)=>{
@@ -33,7 +30,10 @@ function SigninForm(props: {match:any,history:any}) {
             });
         })
         .catch((err: any)=>{
-            console.log(err);
+            const error = err.response;
+            if(error.status >= 400) {
+                alert('아이디나 비밀번호가 틀렸습니다. 다시 입력해주세요');
+            }
         })
 
 

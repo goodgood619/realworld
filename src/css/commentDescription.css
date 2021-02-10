@@ -3,13 +3,26 @@ div.comment {
     margin-right : 15%;
 }
 
-div.comment_description {
-    padding-bottom : 5%;
-}
 
 div.comment_sign {
     margin-top : 5%;
     margin-left : 35%;
+}
+
+ul.comment_tag {
+    padding : 0;
+    margin-top : 5%;
+    padding-bottom: 10px;
+}
+
+li.comment_tag_item {
+    float : left;
+    border : 1px solid gray;
+    border-radius: 5px;
+    font-size : 0.75rem;
+    padding : .12rem .25rem;
+    margin : 0 .12rem .12rem .12rem;
+    color : gray;
 }
 
 div.comment_list {

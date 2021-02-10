@@ -2,12 +2,11 @@ import { Link } from 'react-router-dom';
 import './css/content_item.css';
 
 
-function ContentItem(props: { articleArray: Array<any>, likeSubmit: any }) {
+function ContentItem(props: { articleArray: Array<any>, likeSubmit: any,disLikeSubmit : any }) {
     let arr = props.articleArray;
     const contents = () => {
         let data: Array<any> = [];
         for (let i = 0; i < arr.length; i++) {
-            console.log('favorited : ',arr[i].favorited);
             data.push(
                 <>
                     <div className="contents_head">
@@ -20,9 +19,10 @@ function ContentItem(props: { articleArray: Array<any>, likeSubmit: any }) {
                             <span>{arr[i].createdAt}</span>
                         </div>
                         <div className="contents_like_button">
-                            <button className={arr[i].favorited === true ? "like_button":"nolike_button"} onClick={() => props.likeSubmit(arr[i].slug)}>
+                            <button className={arr[i].favorited === true ? "like_button":"nolike_button"} onClick={arr[i].favorited === false ? () => props.likeSubmit(arr[i].slug) : 
+                            ()=> props.disLikeSubmit(arr[i].slug)}>
                                 <img className="like_button_image" src="./image/heart.png" alt="" />
-                                {arr[i].favoritesCount}
+                                &nbsp;{arr[i].favoritesCount}
                             </button>
                         </div>
                     </div>
@@ -59,11 +59,20 @@ function ContentItem(props: { articleArray: Array<any>, likeSubmit: any }) {
         }
         return data;
     };
-    return (
-        <>
-            {contents()}
-        </>
-    );
+    if(props.articleArray.length>0) {
+        return (
+            <>
+                {contents()}
+            </>
+        );
+    }
+    else {
+        return (
+            <div className = "no_article">
+                No articles are here... yet.
+            </div>
+        );
+    }
 }
 
 export default ContentItem;

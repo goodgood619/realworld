@@ -1,11 +1,11 @@
 import Header from './header';
-import Article from './article';
+import UserArticle from './userArticle';
 
 function UserHome() {
     return (
         <>
             <Header />
-            <Article profile ={""}/>
+            <UserArticle profile ={""}/>
         </>
     );
 

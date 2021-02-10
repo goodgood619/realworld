@@ -21,6 +21,8 @@ a.body_data_right_tags {
     margin-bottom : 3px;
     margin-right : 3px;
     cursor: pointer;
+    font-size : 0.8rem;
+    padding : .25rem;
     
 }
 a.body_data_right_tags:hover {

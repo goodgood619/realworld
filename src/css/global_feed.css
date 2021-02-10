@@ -2,7 +2,6 @@ li.global_feed {
     color : black;
     padding-right : 1.25rem;
     float : left;
-    text-decoration: underline;
     cursor: pointer;
 }
 li.global_feed:active {

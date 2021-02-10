@@ -56,3 +56,8 @@ button.nolike_button {
 button.like_button {
     background-color: green;
 }
+
+
+div.no_article {
+    margin-top : 3%;
+}

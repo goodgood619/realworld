@@ -9,7 +9,7 @@ function Pagination(props : {curPage : [number,any],articleCount : number}) {
             data.push(
                 <li className = "page">
                     {
-                        <a className = {curpage ===i ? "cur-page-link":"page-link"} onClick={() => setCurPage(i)}>{i+1}</a>  
+                        <a className = {curpage === i ? "cur-page-link":"page-link"} onClick={() => setCurPage(i)}>{i+1}</a>  
                     }
                 </li>
             );
