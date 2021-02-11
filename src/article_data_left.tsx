@@ -8,7 +8,8 @@ profile : any,preTag : [string,any], curProfileTag : [string,any],preProfileTag 
             <GlobalFeed curTag = {props.curTag} profile = {props.profile} preTag = {props.preTag}
             curProfileTag = {props.curProfileTag} preProfileTag = {props.preProfileTag}/>
             <Contents article = {props.article}  
-            curPage = {props.curPage} likeSubmit ={props.likeSubmit} disLikeSubmit = {props.disLikeSubmit}/>
+            curPage = {props.curPage} likeSubmit ={props.likeSubmit} disLikeSubmit = {props.disLikeSubmit}
+            profile = {props.profile === ""?false : true}/>
         </div>
     );
 }

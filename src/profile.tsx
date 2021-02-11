@@ -1,6 +1,5 @@
 import Header from "./header";
 import Banner from "./banner";
-import Article from "./article";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import UserProfile from "./userProfile";
@@ -37,7 +36,7 @@ function Profile(props: { match: any }) {
         if (userName !== profileuserName) {
             return (
                 <div>
-                    <Header />
+                    <Header image = {true}/>
                     <Banner profile={[profile, setProfile]} />
                     <ProfileArticle profile={profile} />
                 </div>

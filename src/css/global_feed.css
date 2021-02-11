@@ -4,7 +4,10 @@ li.global_feed {
     float : left;
     cursor: pointer;
 }
-li.global_feed:active {
-    color : green;
+li.global_feed_active {
+    color : #5cb85c;
+    padding-right : 1.25rem;
+    float : left;
+    cursor : pointer;
 }
 

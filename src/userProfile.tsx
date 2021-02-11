@@ -32,7 +32,7 @@ function UserProfile() {
     else {
         return (
             <div>
-                <Header />
+                <Header image = {true}/>
                 <Banner profile={[profile,setProfile]}/>
                 <ProfileArticle profile={profile}/>
             </div>

@@ -10,7 +10,7 @@ function Comment(props: { match: any, history: any, location: any }) {
 
     return (
         <>
-            <Header />
+            <Header image = {false}/>
             <CommentBanner title={stateValue.title} body={state.body} author  = {state.author} createdAt={state.createdAt}
             description = {state.description} tagList = {state.tagList} history = {props.history} slug = {state.slug}/>
             <CommentDescription description={state.description} tagList={state.tagList}

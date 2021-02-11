@@ -103,9 +103,8 @@ function CommentDescription(props: { description: string, tagList: Array<any>, s
 
                 {
                     commentArray.map((item: any) => (
-                        <React.Fragment key = {item.unique}>
-                            <textarea className="comment_textarea" readOnly>
-                                {item.body}
+                        <Fragment key = {item.unique}>
+                            <textarea className="comment_textarea" value = {item.body} readOnly>
                             </textarea>
                             <div className="comment_footer">
                                 <img src={item.author.image} width="32px" height="32px" alt="" />
@@ -119,7 +118,7 @@ function CommentDescription(props: { description: string, tagList: Array<any>, s
                                     </button> : ""
                                 }
                             </div>
-                        </React.Fragment>
+                        </Fragment>
                     ))
                 }
             </div>);
@@ -131,8 +130,10 @@ function CommentDescription(props: { description: string, tagList: Array<any>, s
                 {props.description}
                 <ul className="comment_tag">
                     {
-                        props.tagList.map((item: any, index: any) => (
-                            <li className="comment_tag_item">{item}</li>
+                        props.tagList.map((item: any) => (
+                            <Fragment key = {item.unique}>
+                                <li className="comment_tag_item">{item}</li>
+                            </Fragment>
                         ))
                     }
                 </ul>

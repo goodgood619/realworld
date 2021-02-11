@@ -49,12 +49,8 @@ li.content_tag_item {
     color : gray;
 }
 
-button.nolike_button {
-
-}
-
 button.like_button {
-    background-color: green;
+    background-color: #5cb85c;
 }
 
 

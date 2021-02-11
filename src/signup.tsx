@@ -4,7 +4,7 @@ function Signup(props : {history : any}) {
 
     return(
         <>
-            <Header />
+            <Header image = {false}/>
             <SignupForm history = {props.history}/>
         </>
     );

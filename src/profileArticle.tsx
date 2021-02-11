@@ -3,6 +3,7 @@ import ArticleDataLeft from "./article_data_left";
 import TagList from "./taglist";
 import './css/article.css';
 import axios from 'axios';
+import {MakeDate,MakeIndex} from './module';
 
 function ProfileArticle(props: { profile: any }) {
     const [article, setArticle] = useState<[Array<any>, number]>([[], 0]);
@@ -31,7 +32,9 @@ function ProfileArticle(props: { profile: any }) {
                 .then((res: any) => {
                     const articleArray: Array<any> = res.data.articles;
                     const totalArticles: number = res.data.articlesCount;
-                    setArticle([articleArray, totalArticles / 5]);
+                    setArticle([articleArray.map((item : any)=> (
+                        {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
+                    )), totalArticles / 5]);
                     console.log(articleArray);
                 });
         }
@@ -41,7 +44,9 @@ function ProfileArticle(props: { profile: any }) {
                 .then((res: any) => {
                     const articleArray: Array<any> = res.data.articles;
                     const totalArticles: number = res.data.articlesCount;
-                    setArticle([articleArray, totalArticles / 5]);
+                    setArticle([articleArray.map((item : any)=> (
+                        {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
+                    )), totalArticles / 5]);
                     setpreProfileTag(curProfileTag);
                     console.log(articleArray);
                 });
@@ -52,7 +57,9 @@ function ProfileArticle(props: { profile: any }) {
                     .get(`https://conduit.productionready.io/api/articles?favorited=${profileUsername}&limit=5&offset=${page}`, headers)
                     .then((res: any) => {
                         const articleArray: Array<any> = res.data.articles;
-                        setArticle([articleArray, article[1]]);
+                        setArticle([articleArray.map((item : any)=> (
+                            {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
+                        )), article[1]]);
                         console.log(articleArray);
                     });
             }
@@ -67,7 +74,9 @@ function ProfileArticle(props: { profile: any }) {
                     .get(`https://conduit.productionready.io/api/articles?author=${profileUsername}&limit=5&offset=${page}`, headers)
                     .then((res: any) => {
                         const articleArray: Array<any> = res.data.articles;
-                        setArticle([articleArray, article[1]]);
+                        setArticle([articleArray.map((item : any)=> (
+                            {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
+                        )), article[1]]);
                         console.log(articleArray);
                     });
             }

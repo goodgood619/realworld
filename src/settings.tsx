@@ -5,7 +5,7 @@ function Settings(props: {history:any}) {
 
     return(
         <div>
-          <Header/>
+          <Header image = {false}/>
           <SettingsForm history = {props.history}/>
         </div>
     );

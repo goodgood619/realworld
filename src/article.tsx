@@ -3,6 +3,8 @@ import ArticleDataLeft from "./article_data_left";
 import TagList from "./taglist";
 import './css/article.css';
 import axios from 'axios';
+import {MakeDate,MakeIndex} from './module';
+
 
 function Article(props: { profile: any }) {
     const [tagList, settagLists] = useState<Array<any>>([]);
@@ -42,7 +44,9 @@ function Article(props: { profile: any }) {
                         const articleArray: Array<any> = res.data.articles;
                         const totalArticles : number = res.data.articlesCount;
                         console.log(articleArray);
-                        setArticle([articleArray,totalArticles/10]);
+                        setArticle([articleArray.map((item : any)=> (
+                            {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
+                        )),totalArticles/10]);
                     });
             }
             // tag가 선택이 되었고 page를 움직이는 상황
@@ -54,7 +58,9 @@ function Article(props: { profile: any }) {
                     .then((res: any) => {
                         const articleArray: Array<any> = res.data.articles;
                         console.log(articleArray);
-                        setArticle([articleArray,article[1]]);
+                        setArticle([articleArray.map((item : any)=> (
+                            {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
+                        )),article[1]]);
                     });
                 }
                 // 다른 tag로 바꾸는 경우 다시 page는 0으로 
@@ -71,7 +77,9 @@ function Article(props: { profile: any }) {
                     .then((res: any) => {
                         const articleArray: Array<any> = res.data.articles;
                         console.log(articleArray);
-                        setArticle([articleArray,article[1]]);
+                        setArticle([articleArray.map((item : any)=> (
+                            {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
+                        )),article[1]]);
                     });
                 }
                 // 다른 tag로 바꾸는 경우 page는 0으로
@@ -88,7 +96,9 @@ function Article(props: { profile: any }) {
                         const articleArray: Array<any> = res.data.articles;
                         const totalArticles : number = res.data.articlesCount;
                         console.log(articleArray);
-                        setArticle([articleArray,totalArticles/10]);
+                        setArticle([articleArray.map((item : any)=> (
+                            {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
+                        )),totalArticles/10]);
                     });
             }
     }, [curTag, curPage,preTag,props.profile.username]);
@@ -111,26 +121,10 @@ function Article(props: { profile: any }) {
 
     };
 
-
-    const handleDisLikeSubmit = (slug: any) => {
-        axios
-        .delete(`https://conduit.productionready.io/api/articles/${slug}/favorite`,{
-            headers : {
-                "Authorization" : `Token ${localStorage.getItem('token')}`
-            }
-        })
-        .then((res:any)=>{
-            console.log(res);
-        })
-        .catch((err:any)=>{
-            console.log(err);
-        });
-    };
-
     return (
 
         <div className="row">
-            <ArticleDataLeft article={article} curPage={[curPage, setCurPage]} likeSubmit={handleLikeSubmit} disLikeSubmit = {handleDisLikeSubmit}
+            <ArticleDataLeft article={article} curPage={[curPage, setCurPage]} likeSubmit={handleLikeSubmit} disLikeSubmit = {""}
                 curTag={[curTag, setcurTag]} profile={props.profile} preTag = {[preTag,setPreTag]} 
                 curProfileTag = {["",""]} preProfileTag = {["",""]}/>
             <TagList tagList={tagList} profile = {props.profile} curTag={[curTag, setcurTag]} preTag = {[preTag, setPreTag]}/>

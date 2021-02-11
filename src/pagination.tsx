@@ -7,7 +7,7 @@ function Pagination(props : {curPage : [number,any],articleCount : number}) {
         const [curpage, setCurPage] = props.curPage;
         for(let i = 0 ;i < props.articleCount;i++) {
             data.push(
-                <li className = "page">
+                <li className = "page" key = {i.toString()}>
                     {
                         <a className = {curpage === i ? "cur-page-link":"page-link"} onClick={() => setCurPage(i)}>{i+1}</a>  
                     }

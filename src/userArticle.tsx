@@ -3,6 +3,7 @@ import ArticleDataLeft from "./article_data_left";
 import TagList from "./taglist";
 import './css/article.css';
 import axios from 'axios';
+import {MakeDate,MakeIndex} from './module';
 
 function UserArticle(props: { profile: any }) {
     const [tagList, settagLists] = useState<Array<any>>([]);
@@ -40,7 +41,9 @@ function UserArticle(props: { profile: any }) {
                     const articleArray: Array<any> = res.data.articles;
                     const totalArticles: number = res.data.articlesCount;
                     console.log(articleArray);
-                    setArticle([articleArray, totalArticles / 10]);
+                    setArticle([articleArray.map((item : any)=> (
+                        {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
+                    )), totalArticles / 10]);
                 });
         }
         // tag가 선택이 되었고 page를 움직이는 상황
@@ -54,7 +57,9 @@ function UserArticle(props: { profile: any }) {
                         .then((res: any) => {
                             const articleArray: Array<any> = res.data.articles;
                             console.log(articleArray);
-                            setArticle([articleArray, article[1]]);
+                            setArticle([articleArray.map((item : any)=> (
+                                {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
+                            )), article[1]]);
                         });
                 }
                 // global인 경우
@@ -64,7 +69,9 @@ function UserArticle(props: { profile: any }) {
                         .then((res: any) => {
                             const articleArray: Array<any> = res.data.articles;
                             console.log(articleArray);
-                            setArticle([articleArray, article[1]]);
+                            setArticle([articleArray.map((item : any)=> (
+                                {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
+                            )), article[1]]);
                         });
                 }
             }
@@ -82,7 +89,9 @@ function UserArticle(props: { profile: any }) {
                     .then((res: any) => {
                         const articleArray: Array<any> = res.data.articles;
                         console.log(articleArray);
-                        setArticle([articleArray, article[1]]);
+                        setArticle([articleArray.map((item : any)=> (
+                            {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
+                        )), article[1]]);
                     });
             }
             // 다른 tag로 바꾸는 경우 page는 0으로
@@ -100,7 +109,9 @@ function UserArticle(props: { profile: any }) {
                         const articleArray: Array<any> = res.data.articles;
                         const totalArticles: number = res.data.articlesCount;
                         console.log(articleArray);
-                        setArticle([articleArray, totalArticles / 10]);
+                        setArticle([articleArray.map((item : any)=> (
+                            {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
+                        )), totalArticles / 10]);
                     });
             }
             else {
@@ -110,7 +121,9 @@ function UserArticle(props: { profile: any }) {
                         const articleArray: Array<any> = res.data.articles;
                         const totalArticles: number = res.data.articlesCount;
                         console.log(articleArray);
-                        setArticle([articleArray, totalArticles / 10]);
+                        setArticle([articleArray.map((item : any)=> (
+                            {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
+                        )), totalArticles / 10]);
                         setPreTag("global");
                     });
             }

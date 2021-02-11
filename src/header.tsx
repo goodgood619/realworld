@@ -2,7 +2,7 @@ import './css/header.css';
 import {Link} from 'react-router-dom';
 
 
-function Header() {
+function Header(props : {image : boolean}) {
     const userName = localStorage.getItem('username');
     if (userName === null) {
         return (
@@ -37,11 +37,11 @@ function Header() {
                             Home&nbsp;
                         </Link>
                         <Link to = "/newpost" className="nav_link">
-                            <img src="./image/newpost.PNG" className = "header_icon" alt=""/>
+                            <img src={props.image === false ? "./image/newpost.PNG" : "../image/newpost.PNG"} className = "header_icon" alt=""/>
                             New Post&nbsp;&nbsp;
                         </Link>
                         <Link to = "/settings" className = "nav_link">
-                            <img src="./image/setting.PNG" className = "header_icon" alt=""/>
+                            <img src={props.image === false ? "./image/setting.PNG" : "../image/setting.PNG"} className = "header_icon" alt=""/>
                             Settings 
                         </Link>
                         <Link to = "/userprofile" className="nav_link">

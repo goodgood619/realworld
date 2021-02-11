@@ -4,7 +4,7 @@ function Signin(props: {match:any,history:any}) {
 
     return(
         <>
-            <Header />
+            <Header image = {false}/>
             <SigninForm match = {props.match} history = {props.history}/>
         </>
     );

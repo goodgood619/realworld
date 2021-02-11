@@ -4,7 +4,7 @@ import UserArticle from './userArticle';
 function UserHome() {
     return (
         <>
-            <Header />
+            <Header image = {false}/>
             <UserArticle profile ={""}/>
         </>
     );

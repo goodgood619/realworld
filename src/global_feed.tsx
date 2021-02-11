@@ -9,12 +9,12 @@ function GlobalFeed(props : {curTag : [string,any],profile : any,preTag : [strin
             <>
             <div className="global_feed">
                 {
-                    userName !== null ? <li className ="global_feed" onClick = {()=> props.curTag[1]("")}>Your Feed</li> : <></> 
+                    userName !== null ? <li className ={props.curTag[0]===""?"global_feed_active":"global_feed"} onClick = {()=> props.curTag[1]("")}>Your Feed</li> : <></> 
                 }
-                <li className="global_feed" onClick = {()=> {props.curTag[1]("global"); props.preTag[1](props.curTag[0]);}}>
+                <li className={props.curTag[0]==="global"?"global_feed_active":"global_feed"} onClick = {()=> {props.curTag[1]("global"); props.preTag[1](props.curTag[0]);}}>
                     Global Feed
                 </li>
-                <li className="global_feed">
+                <li className={props.curTag[0]!=="global" && props.curTag[0]!==""?"global_feed_active":"global_feed" }>
                     {props.curTag[0] === "global"?"" :props.curTag[0]}
                 </li>
             </div>
@@ -27,10 +27,10 @@ function GlobalFeed(props : {curTag : [string,any],profile : any,preTag : [strin
         return (
             <>
                 <div className="global_feed">
-                    <li className="global_feed" onClick = {()=> {props.curProfileTag[1](""); props.preProfileTag[1](props.preProfileTag[0]);}}>
+                    <li className={props.curProfileTag[0]===""? "global_feed_active" : "global_feed"} onClick = {()=> {props.curProfileTag[1](""); props.preProfileTag[1](props.preProfileTag[0]);}}>
                         My Articles
                     </li>
-                    <li className="global_feed" onClick = {()=> {props.curProfileTag[1]("favorite"); props.preProfileTag[1]("");}}>
+                    <li className={props.curProfileTag[0]==="favorite"?"global_feed_active":"global_feed"} onClick = {()=> {props.curProfileTag[1]("favorite"); props.preProfileTag[1]("");}}>
                         Favorited Articles
                     </li>
                 </div>

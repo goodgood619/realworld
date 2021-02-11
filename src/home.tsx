@@ -9,7 +9,7 @@ function Home() {
     if(userName === null) {
         return (
             <>
-                <Header />
+                <Header image = {false}/>
                 <Banner profile = {["",""]}/>
                 <Article profile ={""}/>
             </>
