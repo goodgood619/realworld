@@ -25,12 +25,7 @@ function SigninForm(props: {match:any,history:any}) {
             localStorage.setItem('email',data.email);
             localStorage.setItem('bio',data.bio);
             localStorage.setItem('image',data.image);
-            props.history.push("/userHome",{
-                email : data.email,
-                username : data.username,
-                bio : data.bio,
-                image : data.image
-            });
+            props.history.push("/userHome");
         })
         .catch((err: any)=>{
             const error = err.response;

@@ -4,7 +4,6 @@ import CommentDescription from "./commentDescription";
 import Header from "./header";
 
 function Comment(props: { match: any, history: any, location: any }) {
-    console.log('comment props : ', props);
     const state = props.location.state;
     const [stateValue, setStateValue] = useState<any>(state);
 
