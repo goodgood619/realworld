@@ -1,0 +1,30 @@
+div.comment_root {
+    display: inline-block;
+    background-color: black;
+    width : 100%;
+    padding-bottom: 1.75rem;
+    color : white;
+    margin-bottom: 5%;
+}
+
+h1.comment_title {
+    font-size: 3.5rem;
+}
+
+div.comment_author {
+    display: inline-block;
+    margin : 0 0 0 5px;
+    width : 80%;
+}
+
+button.comment_edit_user {
+    margin-left : 3%;
+    border : 1px solid gray;
+    background-color: none;
+    color : gray;
+}
+
+button.comment_delete_user {
+    border : 1px solid red;
+    color : red;
+}

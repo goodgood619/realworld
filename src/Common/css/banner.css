@@ -1,0 +1,59 @@
+div#banner {
+    margin-top : 2%;
+    margin-bottom : 5%;
+}
+
+h3.home_banner {
+    font-size : 3rem;
+    padding-top: 2%;
+    margin-bottom : 0.25%;
+}
+
+p.home_banner {
+    font-size : 1.3rem;
+}
+
+div.home_banner {
+    background-color: rgb(88, 196, 88);
+    width : 100%;
+    padding-bottom: 1.75rem;
+    color : white;
+    text-align: center;
+}
+
+div.user_banner {
+    background-color: #f3f3f3;
+    width : 100%;
+    padding-bottom: 1.85rem;
+    color : black;
+    text-align: center;
+}
+
+div.profile_banner {
+    margin-right : 20%;
+    margin-left : 20%;
+    padding-top : 2%;
+}
+
+button.edit_button {
+    float : right;
+}
+
+button.unfollow {
+    float : right;
+}
+button.follow {
+    float : right;
+    background : gray;
+}
+
+h4.home_banner {
+    margin-bottom: 0;
+}
+
+img.profile {
+    width : 100px;
+    height : 100px;
+    display: block;
+    margin : 0 auto 0 auto;
+}

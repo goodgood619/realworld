@@ -1,0 +1,39 @@
+nav.nav_header {
+    margin-left : 15%;
+    margin-right : 15%;
+    margin-bottom : -1%;
+}
+
+a.left_header {
+    color : green;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding-bottom: 5%;
+}
+
+ul.ul_head {
+
+    float : right;
+    cursor: pointer;
+    color : gray;
+    position: relative;
+    font-size : 1.1rem;
+    padding-inline-start: 0px;
+    margin-top : 1%;
+}
+
+a.nav_link {
+    font-size :0.9rem;
+    color : black;
+}
+
+a.comment_sign {
+    font-size : 0.9rem;
+    color : green;
+}
+
+img.header_icon {
+    width : 30px;
+    height : 20px;
+    margin-bottom : -2.5%;
+}
