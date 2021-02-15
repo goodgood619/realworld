@@ -6,16 +6,16 @@ import {observer} from 'mobx-react-lite';
 const GlobalFeed = observer((props : {profile : any,
     curProfileTag : [string,any],preProfileTag : [string,any]})=> {
     const profileUsername = props.profile.username;
-    const curTag = MyMobxTag.getCurTag()
+    const curTag = MyMobxTag.getTag().curTag
     if (profileUsername === undefined) {
         const userName = localStorage.getItem('username');
         return (
             <>
             <div className="global_feed">
                 {
-                    userName !== null ? <li className ={curTag===""?"global_feed_active":"global_feed"} onClick = {()=> MyMobxTag.setCurTag("")}>Your Feed</li> : <></> 
+                    userName !== null ? <li className ={curTag===""?"global_feed_active":"global_feed"} onClick = {()=> MyMobxTag.setTag({curTag : "",testpage : 0})}>Your Feed</li> : <></> 
                 }
-                <li className={curTag==="global"?"global_feed_active":"global_feed"} onClick = {()=> {MyMobxTag.setCurTag("global");MyMobxTag.setPreTag(curTag);}}>
+                <li className={curTag==="global"?"global_feed_active":"global_feed"} onClick = {()=> {MyMobxTag.setTag({curTag : "global",testpage : 0});}}>
                     Global Feed
                 </li>
                 <li className={curTag!=="global" && curTag!==""?"global_feed_active":"global_feed" }>

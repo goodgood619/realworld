@@ -12,7 +12,6 @@ import { autorun } from 'mobx';
 const Article = observer((props: { profile: any })=> {
     const [tagList, settagLists] = useState<Array<any>>([]);
     const [article, setArticle] = useState<[Array<any>,number]>([[],50]);
-    const [curPage, setCurPage] = useState<number>(0);
 
     useEffect(() => {
         axios
@@ -25,6 +24,7 @@ const Article = observer((props: { profile: any })=> {
 
     useEffect(() => autorun(() => {
         
+        
         let headers :any;
         if(localStorage.getItem('token') != null) {
             headers = {
@@ -34,12 +34,10 @@ const Article = observer((props: { profile: any })=> {
             };
         }
 
-            const page = curPage * 10;
+            const {curTag,testpage} = MyMobxTag.getTag();
+            console.log('article curTag : ',curTag,'page : ',testpage);
+            const page = testpage * 10;
             // curTag가 ""이고 page 0 일때(global feed 첫페이지 로드)
-            console.log('curPage : ',curPage);
-            console.log('page : ',page);
-            const curTag = MyMobxTag.getCurTag();
-            const preTag = MyMobxTag.getPreTag();
             if (curTag === "global" && page === 0) {
                 axios
                     .get(`https://conduit.productionready.io/api/articles?limit=10`,headers)
@@ -53,8 +51,6 @@ const Article = observer((props: { profile: any })=> {
             }
             // tag가 선택이 되었고 page를 움직이는 상황
             else if (curTag !== "global" && page !== 0) {
-                // tag가 동일한 상태에서 page를 움직이는 경우
-                if(curTag === preTag) {
                     axios
                     .get(`https://conduit.productionready.io/api/articles?tag=${curTag}&limit=10&offset=${page}`,headers)
                     .then((res: any) => {
@@ -64,15 +60,8 @@ const Article = observer((props: { profile: any })=> {
                         )),article[1]]);
                     });
                 }
-                // 다른 tag로 바꾸는 경우 다시 page는 0으로 
-                else {
-                    setCurPage(0);
-                    MyMobxTag.setPreTag(curTag);
-                }
-            }
             // global feed인데 page를 움직이는 상황
             else if (curTag === "global" && page !== 0) {
-                if(curTag === preTag) {
                     axios
                     .get(`https://conduit.productionready.io/api/articles?limit=10&offset=${page}`,headers)
                     .then((res: any) => {
@@ -81,12 +70,6 @@ const Article = observer((props: { profile: any })=> {
                             {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
                         )),article[1]]);
                     });
-                }
-                // 다른 tag로 바꾸는 경우 page는 0으로
-                else {
-                    setCurPage(0);
-                    MyMobxTag.setPreTag(curTag);
-                }
             }
             // tag가 선택되었는데, 첫 page인 상황
             else if (curTag !== "global" && page === 0) {
@@ -100,7 +83,7 @@ const Article = observer((props: { profile: any })=> {
                         )),totalArticles/10]);
                     });
             }
-    }), [curPage,props.profile.username]);
+    }), [props.profile.username]);
 
     const handleLikeSubmit = (slug: any) => {
 
@@ -123,7 +106,7 @@ const Article = observer((props: { profile: any })=> {
     return (
 
         <div className="row">
-            <ArticleDataLeft article={article} curPage={[curPage, setCurPage]} likeSubmit={handleLikeSubmit} disLikeSubmit = {""}
+            <ArticleDataLeft article={article} likeSubmit={handleLikeSubmit} disLikeSubmit = {""}
                 profile={props.profile} curProfileTag = {["",""]} preProfileTag = {["",""]}/>
             <TagList tagList={tagList} profile = {props.profile}/>
         </div>

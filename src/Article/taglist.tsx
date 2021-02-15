@@ -15,7 +15,11 @@ const TagList = observer((props: { tagList: Array<any>, profile: any})=> {
                     </div>
                     <div>
                         {props.tagList.map((item: any) => (
-                                <a className="body_data_right_tags" onClick={() => { MyMobxTag.setCurTag(item);  }} >{item}</a>
+                                <a className="body_data_right_tags" onClick={() => { 
+                                    if(item !== MyMobxTag.getTag().curTag) {
+                                        MyMobxTag.setTag({curTag : item,testpage : 0})
+                                    }
+                                  }} >{item}</a>
                         ))}
                     </div>
                 </div>

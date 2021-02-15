@@ -7,7 +7,6 @@ import {MakeDate,MakeIndex} from '../Common/module';
 
 function ProfileArticle(props: { profile: any }) {
     const [article, setArticle] = useState<[Array<any>, number]>([[], 0]);
-    const [curPage, setCurPage] = useState<number>(0);
     const [curProfileTag, setcurProfileTag] = useState<string>("");
     const [preProfileTag, setpreProfileTag] = useState<string>("");
 
@@ -23,7 +22,7 @@ function ProfileArticle(props: { profile: any }) {
                 }
             };
         }
-        const page = curPage * 5;
+        const page = 0; // curPage * 5
 
         // myarticle and first page
         if (curProfileTag === "" && page === 0) {
@@ -31,7 +30,7 @@ function ProfileArticle(props: { profile: any }) {
                 .get(`https://conduit.productionready.io/api/articles?author=${profileUsername}&limit=5&offset=0`, headers)
                 .then((res: any) => {
                     const articleArray: Array<any> = res.data.articles;
-                    const totalArticles: number = res.data.articlesCount;
+                    let totalArticles: number = res.data.articlesCount;
                     setArticle([articleArray.map((item : any)=> (
                         {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
                     )), totalArticles / 5]);
@@ -42,7 +41,7 @@ function ProfileArticle(props: { profile: any }) {
                 .get(`https://conduit.productionready.io/api/articles?favorited=${profileUsername}&limit=5`, headers)
                 .then((res: any) => {
                     const articleArray: Array<any> = res.data.articles;
-                    const totalArticles: number = res.data.articlesCount;
+                    let totalArticles: number = res.data.articlesCount;
                     setArticle([articleArray.map((item : any)=> (
                         {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
                     )), totalArticles / 5]);
@@ -62,7 +61,7 @@ function ProfileArticle(props: { profile: any }) {
                     });
             }
             else {
-                setCurPage(0);
+                // setCurPage(0);
                 setpreProfileTag(curProfileTag);
             }
         }
@@ -78,11 +77,11 @@ function ProfileArticle(props: { profile: any }) {
                     });
             }
             else {
-                setCurPage(0);
+                // setCurPage(0);
                 setpreProfileTag(curProfileTag);
             }
         }
-    }, [curPage, curProfileTag, preProfileTag, props.profile.username]);
+    }, [curProfileTag, preProfileTag, props.profile.username]);
 
     const handleLikeSubmit = (slug: any) => {
 
@@ -121,7 +120,7 @@ function ProfileArticle(props: { profile: any }) {
     return (
 
         <div className="row">
-            <ArticleDataLeft article={article} curPage={[curPage, setCurPage]} likeSubmit={handleLikeSubmit} disLikeSubmit={handleDisLikeSubmit}
+            <ArticleDataLeft article={article} likeSubmit={handleLikeSubmit} disLikeSubmit={handleDisLikeSubmit}
                 profile={props.profile}
                 curProfileTag={[curProfileTag, setcurProfileTag]} preProfileTag={[preProfileTag, setpreProfileTag]} />
             <TagList tagList={[]} profile={props.profile}/>

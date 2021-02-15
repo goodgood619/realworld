@@ -1,29 +1,19 @@
 import { makeAutoObservable } from "mobx";
 
 class MobxTag {
-    curTag :string = "global";
-    preTag :string = "global";
+    Tag :{curTag : string,testpage : number} = {curTag : "global",testpage : 0};
 
     constructor() {
         makeAutoObservable(this);
     }
 
-    setCurTag(value : any) {
-        this.curTag = value;
-        console.log('MobxTag CurTag',this.curTag);
+    setTag(value : {curTag : any,testpage : number}) {
+        this.Tag = value;
+        console.log('MobxTag CurTag',this.Tag);
     }
 
-    setPreTag(value : any) {
-        this.preTag = value;
-        console.log('MobxTag Pretag',this.preTag);
-    }
-
-    getCurTag() {
-        return this.curTag;
-    }
-
-    getPreTag() {
-        return this.preTag;
+    getTag() {
+        return this.Tag;
     }
     
 }

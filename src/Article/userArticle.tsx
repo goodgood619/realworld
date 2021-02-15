@@ -3,13 +3,13 @@ import ArticleDataLeft from "../Common/article_data_left";
 import TagList from "./taglist";
 import './css/article.css';
 import axios from 'axios';
-import {MakeDate,MakeIndex} from '../Common/module';
+import { MakeDate, MakeIndex } from '../Common/module';
 import MyMobxTag from './mobx-article-tag';
+import { autorun } from 'mobx';
 
 function UserArticle(props: { profile: any }) {
     const [tagList, settagLists] = useState<Array<any>>([]);
     const [article, setArticle] = useState<[Array<any>, number]>([[], 0]);
-    const [curPage, setCurPage] = useState<number>(0);
 
     useEffect(() => {
         axios
@@ -20,7 +20,7 @@ function UserArticle(props: { profile: any }) {
             })
     }, []);
 
-    useEffect(() => {
+    useEffect(() => autorun(() => {
 
         let headers: any;
         if (localStorage.getItem('token') != null) {
@@ -31,33 +31,33 @@ function UserArticle(props: { profile: any }) {
             };
         }
 
-        const page = curPage * 10;
-        const curTag = MyMobxTag.getCurTag();
-        const preTag = MyMobxTag.getPreTag();
+        const { curTag, testpage } = MyMobxTag.getTag();
+        console.log('article curTag : ', curTag, 'page : ', testpage);
+        const page = testpage * 10;
+        // curTag가 ""이고 page 0 일때(global feed 첫페이지 로드)
+        console.log('page : ', page);
         // curTag가 ""이고 page 0 일때(Your feed 첫페이지 로드)
         if (curTag === "" && page === 0) {
             axios
                 .get(`https://conduit.productionready.io/api/articles/feed?limit=10`, headers)
                 .then((res: any) => {
                     const articleArray: Array<any> = res.data.articles;
-                    const totalArticles: number = res.data.articlesCount;
-                    setArticle([articleArray.map((item : any)=> (
-                        {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
+                    let totalArticles: number = res.data.articlesCount;
+                    setArticle([articleArray.map((item: any) => (
+                        { ...item, createdAt: MakeDate(item.createdAt), unique: MakeIndex() }
                     )), totalArticles / 10]);
                 });
         }
         // tag가 선택이 되었고 page를 움직이는 상황
         else if (curTag !== "" && page !== 0) {
-            // tag가 동일한 상태에서 page를 움직이는 경우
-            if (curTag === preTag) {
                 // 그게 global feed가 아닌 경우
                 if (curTag !== "global") {
                     axios
                         .get(`https://conduit.productionready.io/api/articles?tag=${curTag}&limit=10&offset=${page}`, headers)
                         .then((res: any) => {
                             const articleArray: Array<any> = res.data.articles;
-                            setArticle([articleArray.map((item : any)=> (
-                                {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
+                            setArticle([articleArray.map((item: any) => (
+                                { ...item, createdAt: MakeDate(item.createdAt), unique: MakeIndex() }
                             )), article[1]]);
                         });
                 }
@@ -67,35 +67,22 @@ function UserArticle(props: { profile: any }) {
                         .get(`https://conduit.productionready.io/api/articles?limit=10&offset=${page}`, headers)
                         .then((res: any) => {
                             const articleArray: Array<any> = res.data.articles;
-                            setArticle([articleArray.map((item : any)=> (
-                                {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
+                            setArticle([articleArray.map((item: any) => (
+                                { ...item, createdAt: MakeDate(item.createdAt), unique: MakeIndex() }
                             )), article[1]]);
                         });
                 }
-            }
-            // 다른 tag로 바꾸는 경우 다시 page는 0으로 
-            else {
-                setCurPage(0);
-                MyMobxTag.setPreTag(curTag);
-            }
         }
         // Your feed인데 page를 움직이는 상황
         else if (curTag === "" && page !== 0) {
-            if (curTag === preTag) {
                 axios
                     .get(`https://conduit.productionready.io/api/articles/feed?limit=10&offset=${page}`, headers)
                     .then((res: any) => {
                         const articleArray: Array<any> = res.data.articles;
-                        setArticle([articleArray.map((item : any)=> (
-                            {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
+                        setArticle([articleArray.map((item: any) => (
+                            { ...item, createdAt: MakeDate(item.createdAt), unique: MakeIndex() }
                         )), article[1]]);
                     });
-            }
-            // 다른 tag로 바꾸는 경우 page는 0으로
-            else {
-                setCurPage(0);
-                MyMobxTag.setPreTag(curTag);
-            }
         }
         // tag가 선택되었는데, 첫 page인 상황
         else if (curTag !== "" && page === 0) {
@@ -104,9 +91,9 @@ function UserArticle(props: { profile: any }) {
                     .get(`https://conduit.productionready.io/api/articles?tag=${curTag}&limit=10`, headers)
                     .then((res: any) => {
                         const articleArray: Array<any> = res.data.articles;
-                        const totalArticles: number = res.data.articlesCount;
-                        setArticle([articleArray.map((item : any)=> (
-                            {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
+                        let totalArticles: number = res.data.articlesCount;
+                        setArticle([articleArray.map((item: any) => (
+                            { ...item, createdAt: MakeDate(item.createdAt), unique: MakeIndex() }
                         )), totalArticles / 10]);
                     });
             }
@@ -115,15 +102,14 @@ function UserArticle(props: { profile: any }) {
                     .get(`https://conduit.productionready.io/api/articles?limit=10`, headers)
                     .then((res: any) => {
                         const articleArray: Array<any> = res.data.articles;
-                        const totalArticles: number = res.data.articlesCount;
-                        setArticle([articleArray.map((item : any)=> (
-                            {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
+                        let totalArticles: number = res.data.articlesCount;
+                        setArticle([articleArray.map((item: any) => (
+                            { ...item, createdAt: MakeDate(item.createdAt), unique: MakeIndex() }
                         )), totalArticles / 10]);
-                        MyMobxTag.setPreTag("global");
                     });
             }
         }
-    }, [curPage, props.profile.username]);
+    }), [props.profile.username]);
 
 
 
@@ -137,9 +123,11 @@ function UserArticle(props: { profile: any }) {
             .then((res: any) => {
                 const resArticle = res.data.article;
                 setArticle(
-                    [article[0].map((item:any)=> (item.slug === resArticle.slug ? 
-                        {...item,favorited : !item.favorited,
-                            favoritesCount : item.favoritesCount + 1}:item)),article[1]]
+                    [article[0].map((item: any) => (item.slug === resArticle.slug ?
+                        {
+                            ...item, favorited: !item.favorited,
+                            favoritesCount: item.favoritesCount + 1
+                        } : item)), article[1]]
                 )
             })
             .catch((err: any) => {
@@ -162,9 +150,11 @@ function UserArticle(props: { profile: any }) {
             .then((res: any) => {
                 const resArticle = res.data.article;
                 setArticle(
-                    [article[0].map((item:any)=> (item.slug === resArticle.slug ? 
-                        {...item,favorited : !item.favorited,
-                            favoritesCount : item.favoritesCount - 1}:item)),article[1]]
+                    [article[0].map((item: any) => (item.slug === resArticle.slug ?
+                        {
+                            ...item, favorited: !item.favorited,
+                            favoritesCount: item.favoritesCount - 1
+                        } : item)), article[1]]
                 )
             })
             .catch((err: any) => {
@@ -175,10 +165,10 @@ function UserArticle(props: { profile: any }) {
     return (
 
         <div className="row">
-            <ArticleDataLeft article={article} curPage={[curPage, setCurPage]} likeSubmit={handleLikeSubmit} disLikeSubmit={handleDisLikeSubmit}
+            <ArticleDataLeft article={article} likeSubmit={handleLikeSubmit} disLikeSubmit={handleDisLikeSubmit}
                 profile={props.profile}
                 curProfileTag={["", ""]} preProfileTag={["", ""]} />
-            <TagList tagList={tagList} profile={props.profile}/>
+            <TagList tagList={tagList} profile={props.profile} />
         </div>
     );
 }
