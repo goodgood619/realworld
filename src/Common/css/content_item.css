@@ -1,0 +1,59 @@
+/* contents_head */
+
+div.contents_head {
+    display : block;
+    margin-top : 30px;
+}   
+
+div.contents_head_info {
+    display: inline-block;
+    margin : 1px 0px 1px 10px;
+}
+
+
+div.contents_like_button {
+    float : right;
+}
+
+img.like_button_image {
+    width : 15px; 
+    height : 15px;
+}
+
+/*  contents_body */
+
+div.contents_body {
+    margin-bottom: 2%;
+}
+
+div.content_tag_position {
+    display : inline-block;
+    padding: 0;
+    width : 100%;
+}
+
+ul.content_tag {
+    margin : 0;
+    padding : 0;
+    float : right;
+    width : 40%;
+}
+
+li.content_tag_item {
+    float : right;
+    border : 1px solid gray;
+    border-radius: 5px;
+    font-size : 0.75rem;
+    padding : .12rem .25rem;
+    margin : 0 .12rem .12rem .12rem;
+    color : gray;
+}
+
+button.like_button {
+    background-color: #5cb85c;
+}
+
+
+div.no_article {
+    margin-top : 3%;
+}

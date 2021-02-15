@@ -1,15 +1,15 @@
 import React from 'react';
 import './css/App.css';
-import Signin from './signin';
-import Signup from './signup';
-import Home from './home';
+import Signin from './SignIn/signin';
+import Signup from './SignUp/signup';
+import Home from './Home/home';
 import {Route} from 'react-router-dom';
-import NewPost from './newpost';
-import Settings from './settings';
-import Profile from './profile';
-import UserHome from './userHome';
-import UserProfile from './userProfile';
-import Comment from './comment';
+import NewPost from './NewPost/newpost';
+import Settings from './Settings/settings';
+import Profile from './Profile/profile';
+import UserHome from './Home/userHome';
+import UserProfile from './Profile/userProfile';
+import Comment from './Comment/comment';
 
 function App() {
   return (
