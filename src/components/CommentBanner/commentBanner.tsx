@@ -1,0 +1,64 @@
+import {Link} from 'react-router-dom';
+import axios from 'axios';
+import * as Styled from './styled';
+
+function CommentBanner(props: { title: string, body: string,author : string, createdAt: any,description : string, tagList : Array<any>,history : any, slug : any }) {
+    const userName = localStorage.getItem('username');
+
+
+    const handleDelete = (e:any) => {
+        e.preventDefault();
+        axios
+        .delete(`https://conduit.productionready.io/api/articles/${props.slug}`,{
+            headers : {
+                "Authorization" : `Token ${localStorage.getItem('token')}`
+            }
+        })
+        .then((res:any)=> {
+            props.history.push("/userHome");
+        })
+        .catch((err:any)=>{
+            console.log(err);
+        });
+    };
+
+    const userBanner = () => {
+        let arr: Array<any> = [];
+        arr.push(
+            <>
+            <Link to = {{pathname : "/newpost",
+            state : {
+                title : props.title,
+                body : props.body,
+                description : props.description,
+                tagList : props.tagList,
+                edit : true,
+                slug : props.slug,
+            }}} >
+                <button className="comment_edit_user">Edit Article</button>
+            </Link>
+            <button className="comment_delete_user" onClick = {handleDelete}>Delete Article</button>
+            </>
+        );
+        return arr;
+    }
+    
+    return (
+        <Styled.CommentRootContainer>
+            <Styled.CommentContainer>
+                <Styled.CommentTitle>{props.title}</Styled.CommentTitle>
+                <img src="./image/github.PNG" width="32px" height="32px" alt="" />
+                <Styled.CommentAuthor>
+                    <span>{props.author}</span>
+                    <br />
+                    <span>{props.createdAt}</span>
+                    {
+                        userName !== null && userName === props.author ?userBanner() : ""
+                    }
+                </Styled.CommentAuthor>
+            </Styled.CommentContainer>
+        </Styled.CommentRootContainer>
+    );
+}
+
+export default CommentBanner;

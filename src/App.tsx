@@ -1,15 +1,15 @@
 import React from 'react';
 import './css/App.css';
-import Signin from './SignIn/signin';
-import Signup from './SignUp/signup';
-import Home from './Home/home';
+import Signin from './views/pages/SignIn/signin';
+import Signup from './views/pages/SignUp/signup';
+import Home from './views/pages/Home/home';
 import {Route} from 'react-router-dom';
-import NewPost from './NewPost/newpost';
-import Settings from './Settings/settings';
-import Profile from './Profile/profile';
-import UserHome from './Home/userHome';
-import UserProfile from './Profile/userProfile';
-import Comment from './Comment/comment';
+import NewPost from './views/pages/NewPost/newpost';
+import Settings from './views/pages/Settings/settings';
+import Profile from './views/pages/Profile/profile';
+import UserHome from './views/pages/Home/userHome';
+import UserProfile from './views/pages/Profile/userProfile';
+import Comment from './views/pages/Comment/comment';
 
 function App() {
   return (
