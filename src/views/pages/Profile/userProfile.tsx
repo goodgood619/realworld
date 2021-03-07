@@ -5,7 +5,7 @@ import Home from '../Home/home';
 import axios from 'axios';
 import ProfileArticle from '../Article/profileArticle';
 import { checkLogin } from '../../../helpers/module';
-
+import {API_URL} from '../../../constants/constants';
 
 function UserProfile() {
     const username = localStorage.getItem('username');
@@ -15,7 +15,7 @@ function UserProfile() {
         useEffect(()=> {
     
             axios
-            .get(`https://conduit.productionready.io/api/profiles/${username}`)
+            .get(`${API_URL}/profiles/${username}`)
             .then((res:any)=> {
                 let profile = res.data.profile;
                 setProfile(profile);

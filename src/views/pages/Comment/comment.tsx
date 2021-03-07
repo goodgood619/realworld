@@ -9,17 +9,15 @@ function Comment(props: { match: any, history: any, location: any }) {
     
 
     const state = MakeContentItem(props.location.state);
-    const [stateValue, setStateValue] = useState<any>(state);
-
     return (
         <>
             <Header image={false} />
-            <CommentBanner title={(stateValue.title)} body={(state.body)} author={(state.author)} 
-            createdAt={(state.createdAt)}
-                description={(state.description)} 
-                tagList={(state.tagList)} history={props.history} slug={(state.slug)} />
-            <CommentDescription description={(state.description)} tagList={(state.tagList)}
-                slug={(state.slug)} />
+            <CommentBanner title={state.title} body={state.body} author={state.author} 
+            createdAt={state.createdAt}
+                description={state.description} 
+                tagList={state.tagList} history={props.history} slug={state.slug} img={state.img}/>
+            <CommentDescription description={state.description} tagList={state.tagList}
+                slug={(state.slug)} img={state.img}/>
         </>
     );
 }

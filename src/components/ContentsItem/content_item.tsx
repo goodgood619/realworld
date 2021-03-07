@@ -37,6 +37,7 @@ function ContentItem(props: { articleArray: Array<any>, likeSubmit: any, disLike
                             tagList: JSON.stringify(item.tagList),
                             slug: JSON.stringify(item.slug),
                             body: JSON.stringify(item.body),
+                            img : JSON.stringify(item.author.image)
                         }
                     }}
                     >

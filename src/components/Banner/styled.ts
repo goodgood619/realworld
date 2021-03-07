@@ -36,8 +36,8 @@ export const BannerUserContainer = styled.div`
 `;
 
 export const BannerProfileContainer = styled.div`
-    margin-right : 20%;
-    margin-left : 20%;
+    margin-right : 10%;
+    margin-left : 10%;
     padding-top : 2%;
 `;
 
@@ -54,4 +54,12 @@ export const BannerImgProfile = styled.img`
     height : 100px;
     display: block;
     margin : 0 auto 0 auto;
+`;
+
+export const BannerEditButton = styled.button`
+    margin-left : 3%;
+    border : 1px solid gray;
+    background-color: none;
+    color : gray;
+    float : right;
 `;

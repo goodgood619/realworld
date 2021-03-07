@@ -10,7 +10,7 @@ const GlobalFeed = observer((props : {profile : any,
         const userName = localStorage.getItem('username');
         return (
             <>
-            <div className="global_feed">
+            <div>
                 {
                     userName !== null ? <Styled.FeedItem className ={curTag===""?"Active":""} onClick = {()=> MyMobxTag.setTag({curTag : "",testpage : 0})}>Your Feed</Styled.FeedItem> : <></> 
                 }
@@ -29,7 +29,7 @@ const GlobalFeed = observer((props : {profile : any,
     else {
         return (
             <>
-                <div className="global_feed">
+                <div>
                     <Styled.FeedItem className={props.curProfileTag[0]===""? "Active" : ""} onClick = {()=> {props.curProfileTag[1](""); props.preProfileTag[1](props.preProfileTag[0]);}}>
                         My Articles
                     </Styled.FeedItem>

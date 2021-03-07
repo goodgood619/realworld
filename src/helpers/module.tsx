@@ -20,8 +20,9 @@ function MakeContentItem(item : any) {
     const tagList = JSON.parse(item.tagList);
     const slug = JSON.parse(item.slug);
     const body = JSON.parse(item.body);
+    const img = JSON.parse(item.img);
 
-    return {title,description,author,createdAt, tagList,slug, body};
+    return {title,description,author,createdAt, tagList,slug, body,img};
 }
 export {MakeDate,MakeIndex,checkLogin,MakeContentItem};
 

@@ -5,7 +5,7 @@ import * as Styled from './styled';
 import {API_URL} from '../../constants/constants';
 
 
-function CommentDescription(props: { description: string, tagList: Array<any>, slug: string }) {
+function CommentDescription(props: { description: string, tagList: Array<any>, slug: string,img : string }) {
     const userName = localStorage.getItem('username');
     const [userComment, setUserComment] = useState<string>("");
     const [commentArray, setCommentArray] = useState<Array<any>>([]);
@@ -97,7 +97,7 @@ function CommentDescription(props: { description: string, tagList: Array<any>, s
                     <Styled.CommentTextArea placeholder="Write a comment..." onChange = {e=> setUserComment(e.target.value)}>
                     </Styled.CommentTextArea>
                     <Styled.CommentFooterUserContainer>
-                        <img src="./image/github.PNG" width="32px" height="32px" alt="" />
+                        <img src={props.img} width="32px" height="32px" alt="" />
                         <Styled.CommentPostButton type = "submit">Post Comment</Styled.CommentPostButton>
                     </Styled.CommentFooterUserContainer>
                 </form>
@@ -108,7 +108,7 @@ function CommentDescription(props: { description: string, tagList: Array<any>, s
                             <Styled.CommentTextArea value = {item.body} readOnly>
                             </Styled.CommentTextArea>
                             <Styled.CommentFooterContainter>
-                                <img src={item.author.image} width="32px" height="32px" alt="" />
+                                <img src={props.img} width="32px" height="32px" alt="" />
                                 <Link to={`/profile/${item.author.username}`}>
                                     <Styled.CommentSpanOther>{item.author.username}</Styled.CommentSpanOther>
                                 </Link>

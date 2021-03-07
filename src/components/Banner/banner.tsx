@@ -9,6 +9,8 @@ function Banner(props : {profile : [any,any]}) {
     const userName = localStorage.getItem('username');
     const image = props.profile[0].image;
     const following = props.profile[0].following;
+    const bio = props.profile[0].bio;
+
     const handleFollow = () => {
 
         axios
@@ -58,10 +60,11 @@ function Banner(props : {profile : [any,any]}) {
                     <Styled.BannerProfileContainer>
                         <Styled.BannerImgProfile src={image} />
                         <Styled.BannerSecondHeader>{profileUserName}</Styled.BannerSecondHeader>
+                        <p>{bio}</p>
                         {
                             userName === profileUserName ? 
                             <Link to = "/settings">
-                                <button className="edit_button">Edit Profile Settings</button>
+                                <Styled.BannerEditButton>Edit Profile Settings</Styled.BannerEditButton>
                             </Link>
                              :
                             <Styled.BannerButton className={following === false ? "unfollow" : "follow"} onClick = {following===false ? handleFollow : handleUnFollow}>+ Follow {profileUserName}</Styled.BannerButton>
