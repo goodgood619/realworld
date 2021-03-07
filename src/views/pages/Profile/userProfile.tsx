@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import Banner from "../Common/banner";
+import Banner from "../../../components/Banner/banner";
 import Header from "../../../components/Header/header";
 import Home from '../Home/home';
 import axios from 'axios';

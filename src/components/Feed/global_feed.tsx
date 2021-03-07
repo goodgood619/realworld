@@ -1,4 +1,4 @@
-import MyMobxTag from '../../views/pages/Article/mobx-article-tag';
+import MyMobxTag from '../../stores/Article/mobx-article-tag';
 import {observer} from 'mobx-react-lite';
 import * as Styled from './styled';
 
@@ -14,10 +14,10 @@ const GlobalFeed = observer((props : {profile : any,
                 {
                     userName !== null ? <Styled.FeedItem className ={curTag===""?"Active":""} onClick = {()=> MyMobxTag.setTag({curTag : "",testpage : 0})}>Your Feed</Styled.FeedItem> : <></> 
                 }
-                <Styled.FeedItem className={curTag==="global"?"Active":""} onClick = {()=> {MyMobxTag.setTag({curTag : "global",testpage : 0});}}>
+                <Styled.FeedItem className={curTag ==="global"?"Active":""} onClick = {()=> {MyMobxTag.setTag({curTag : "global",testpage : 0});}}>
                     Global Feed
                 </Styled.FeedItem>
-                <Styled.FeedItem className={curTag!=="global" && curTag!==""?"Active":"" }>
+                <Styled.FeedItem className={curTag !=="global" && curTag!==""?"Active":"" }>
                     {curTag === "global"?"" :curTag}
                 </Styled.FeedItem>
             </div>

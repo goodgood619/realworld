@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import {observer} from 'mobx-react-lite';
-import MyMobxTag from '../../views/pages/Article/mobx-article-tag';
+import MyMobxTag from '../../stores/Article/mobx-article-tag';
 import * as Styled from './styled';
 
 const TagList = observer((props: { tagList: Array<any>, profile: any})=> {

@@ -1,5 +1,5 @@
-import MyMobxTag from '../Article/mobx-article-tag';
-import './css/pagination.css';
+import MyMobxTag from '../../stores/Article/mobx-article-tag';
+import * as Styled from './styled';
 
 function Pagination(props : {articleCount : number}) {
 
@@ -9,20 +9,20 @@ function Pagination(props : {articleCount : number}) {
         const curpage = MyMobxTag.getTag().testpage;
         for(let i = 0 ;i < props.articleCount;i++) {
             data.push(
-                <li className = "page" key = {i.toString()}>
+                <Styled.PageLi key = {i.toString()}>
                     {
-                        <a className = {curpage === i ? "cur-page-link":"page-link"} onClick={() => MyMobxTag.setTag({curTag : curTag, testpage : i})}>{i+1}</a>  
+                        <Styled.PageLink className = {curpage === i ? "cur-page-link":""} onClick={() => MyMobxTag.setTag({curTag : curTag, testpage : i})}>{i+1}</Styled.PageLink>  
                     }
-                </li>
+                </Styled.PageLi>
             );
         }    
         return data;
     }
         return (
             <nav>
-                <ul className = "pagination">
+                <Styled.PageUl>
                         {makeButton()}
-                </ul>
+                </Styled.PageUl>
             </nav>
         );
 }

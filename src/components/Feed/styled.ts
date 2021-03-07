@@ -5,7 +5,13 @@ export const FeedItem = styled.li`
     padding-right : 1.25rem;
     float : left;
     cursor: pointer;
+
+    &:hover {
+        cursor : pointer;
+    }
+
     ${props => props.className === 'Active' && `
         color : #5cb85c;
+        cursor : pointer;
     `}
 `;

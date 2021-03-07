@@ -1,6 +1,7 @@
-import './css/banner.css';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import {API_URL} from '../../constants/constants';
+import * as Styled from './styled';
 
 
 function Banner(props : {profile : [any,any]}) {
@@ -11,7 +12,7 @@ function Banner(props : {profile : [any,any]}) {
     const handleFollow = () => {
 
         axios
-        .post(`https://conduit.productionready.io/api/profiles/${profileUserName}/follow`,{},{
+        .post(`${API_URL}/profiles/${profileUserName}/follow`,{},{
             headers : {
                 "Authorization" : `Token ${localStorage.getItem('token')}`
             }
@@ -27,7 +28,7 @@ function Banner(props : {profile : [any,any]}) {
 
     const handleUnFollow = ()=> {
         axios
-        .delete(`https://conduit.productionready.io/api/profiles/${profileUserName}/follow`,{
+        .delete(`${API_URL}/profiles/${profileUserName}/follow`,{
             headers : {
                 "Authorization" : `Token ${localStorage.getItem('token')}`
             }
@@ -42,32 +43,32 @@ function Banner(props : {profile : [any,any]}) {
     };
     if (profileUserName === undefined) {
         return (
-            <div id="banner">
-                <div className="home_banner">
-                    <h3 className="home_banner">conduit</h3>
-                    <p className="home_banner"> A place to share your knowledge.</p>
-                </div>
-            </div>
+            <Styled.BannerContainer>
+                <Styled.BannerHomeContainer>
+                    <Styled.BannerHeader>conduit</Styled.BannerHeader>
+                    <Styled.BannerPItem> A place to share your knowledge.</Styled.BannerPItem>
+                </Styled.BannerHomeContainer>
+            </Styled.BannerContainer>
         );
     }
     else {
         return (
-            <div id="banner">
-                <div className="user_banner">
-                    <div className="profile_banner">
-                        <img src={image} className = "profile"/>
-                        <h4 className="home_banner">{profileUserName}</h4>
+            <Styled.BannerContainer>
+                <Styled.BannerUserContainer>
+                    <Styled.BannerProfileContainer>
+                        <Styled.BannerImgProfile src={image} />
+                        <Styled.BannerSecondHeader>{profileUserName}</Styled.BannerSecondHeader>
                         {
                             userName === profileUserName ? 
                             <Link to = "/settings">
                                 <button className="edit_button">Edit Profile Settings</button>
                             </Link>
                              :
-                            <button className={following === false ? "unfollow" : "follow"} onClick = {following===false ? handleFollow : handleUnFollow}>+ Follow {profileUserName}</button>
+                            <Styled.BannerButton className={following === false ? "unfollow" : "follow"} onClick = {following===false ? handleFollow : handleUnFollow}>+ Follow {profileUserName}</Styled.BannerButton>
                         }
-                    </div>
-                </div>
-            </div>
+                    </Styled.BannerProfileContainer>
+                </Styled.BannerUserContainer>
+            </Styled.BannerContainer>
         );
     }
 }

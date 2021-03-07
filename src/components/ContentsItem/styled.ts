@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
 
 export const ContentsHeaderContainer = styled.div`
     display : block;
@@ -47,10 +48,20 @@ export const ContentLiItem = styled.li`
 `;
 
 export const ContentLikeButton = styled.button`
-    background-color: #5cb85c;
+
+    &:hover {
+        cursor : pointer;
+    }
+    
+    ${props => props.className === 'like_button' && `
+        background : #5cb85c;
+    `}
 `;
 
 export const ContentNoArticleContainer = styled.div`
     margin-top : 3%;
 `;
 
+export const ContentLink = styled(Link)`
+    color : black;
+`;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
 
 export const CommentContainer = styled.div`
     margin-left : 15%;
@@ -88,4 +89,12 @@ export const CommentTrashButton = styled.button`
     border : 0;
     width : 30px;
     height : 30px;
+`;
+
+export const CommentSignLink = styled(Link)`
+    color : green;
+
+    &:hover {
+        font-weight : bold;
+    }
 `;

@@ -1,5 +1,5 @@
 import Header from '../../../components/Header/header';
-import Banner from '../Common/banner';
+import Banner from '../../../components/Banner/banner';
 import Article from '../Article/article';
 import UserHome from './userHome';
 

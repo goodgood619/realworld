@@ -12,6 +12,10 @@ export const LeftAHeader = styled(Link)`
     font-size: 1.5rem;
     font-weight: bold;
     padding-bottom: 5%;
+
+    &:hover {
+        font-weight : bold;
+    }
 `;
 
 export const UlHeader = styled.ul`
@@ -27,6 +31,10 @@ export const UlHeader = styled.ul`
 export const NavALink = styled(Link)`
     font-size :0.9rem;
     color : black;
+
+    &:hover {
+        font-weight : bold;
+    }
 `;
 
 export const CommentSign = styled.a`

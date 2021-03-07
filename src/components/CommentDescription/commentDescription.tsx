@@ -2,6 +2,8 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import * as Styled from './styled';
+import {API_URL} from '../../constants/constants';
+
 
 function CommentDescription(props: { description: string, tagList: Array<any>, slug: string }) {
     const userName = localStorage.getItem('username');
@@ -11,7 +13,7 @@ function CommentDescription(props: { description: string, tagList: Array<any>, s
     // getComments from backend
     useEffect(() => {
         axios
-            .get(`https://conduit.productionready.io/api/articles/${props.slug}/comments`)
+            .get(`${API_URL}/articles/${props.slug}/comments`)
             .then((res: any) => {
                 let commentArray: Array<any> = res.data.comments;
                 commentArray.forEach(item=> {
@@ -35,7 +37,7 @@ function CommentDescription(props: { description: string, tagList: Array<any>, s
         };
 
         axios
-            .post(`https://conduit.productionready.io/api/articles/${props.slug}/comments`, data, {
+            .post(`${API_URL}/articles/${props.slug}/comments`, data, {
                 headers: {
                     "Authorization": `Token ${localStorage.getItem('token')}`
                 }
@@ -55,7 +57,7 @@ function CommentDescription(props: { description: string, tagList: Array<any>, s
         e.preventDefault();
         console.log('delete id : ', id);
         axios
-            .delete(`https://conduit.productionready.io/api/articles/${props.slug}/comments/${id}`, {
+            .delete(`${API_URL}/articles/${props.slug}/comments/${id}`, {
                 headers: {
                     "Authorization": `Token ${localStorage.getItem('token')}`
                 }
@@ -73,13 +75,13 @@ function CommentDescription(props: { description: string, tagList: Array<any>, s
         let arr: Array<any> = [];
         arr.push(
             <div className="comment_sign">
-                <Link to="/signin" className="comment_sign">
+                <Styled.CommentSignLink to="/signin">
                     Sign in
-                </Link>
+                </Styled.CommentSignLink>
                 &nbsp;or&nbsp;
-                <Link to="/signup" className="comment_sign">
-                    sign up
-                </Link>&nbsp;to add comments on this article.
+                <Styled.CommentSignLink to="/signup">
+                    Sign up
+                </Styled.CommentSignLink>&nbsp;to add comments on this article.
             </div>
         );
         return arr;

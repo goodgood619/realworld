@@ -2,7 +2,7 @@ import Header from '../../../components/Header/header';
 import Home from './home';
 import UserArticle from '../Article/userArticle';
 import {checkLogin} from '../../../helpers/module';
-import MyMobxTag from '../Article/mobx-article-tag';
+import MyMobxTag from '../../../stores/Article/mobx-article-tag';
 
 function UserHome() {
     const userName = localStorage.getItem('username');

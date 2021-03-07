@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+
 import * as Styled from './styled';
 
 function ContentItem(props: { articleArray: Array<any>, likeSubmit: any, disLikeSubmit: any, profile: boolean }) {
@@ -18,26 +19,27 @@ function ContentItem(props: { articleArray: Array<any>, likeSubmit: any, disLike
                         <span>{item.createdAt}</span>
                     </Styled.ContentHeaderInfoContainer>
                     <Styled.ContentLikeButtonContainer>
-                        <button className={item.favorited === true ? "like_button" : "nolike_button"} onClick={item.favorited === false ? () => props.likeSubmit(item.slug) :
+                        <Styled.ContentLikeButton className={item.favorited === true ? "like_button" : "nolike_button"} onClick={item.favorited === false ? () => props.likeSubmit(item.slug) :
                             () => props.disLikeSubmit(item.slug)}>
                             <Styled.ContentImgButton src={props.profile === false ? "./image/heart.png" : "../image/heart.png"} alt="" />
                                 &nbsp;{item.favoritesCount}
-                        </button>
+                        </Styled.ContentLikeButton>
                     </Styled.ContentLikeButtonContainer>
                 </Styled.ContentsHeaderContainer>
                 <Styled.ContentBodyContainer>
-                    <Link to={{
+                    <Styled.ContentLink to={{
                         pathname: "/comment",
                         state: {
-                            title: item.title,
-                            description: item.description,
-                            author: item.author.username,
-                            createdAt: item.createdAt,
-                            tagList: item.tagList,
-                            slug: item.slug,
-                            body: item.body,
+                            title: JSON.stringify(item.title),
+                            description: JSON.stringify(item.description),
+                            author: JSON.stringify(item.author.username),
+                            createdAt: JSON.stringify(item.createdAt),
+                            tagList: JSON.stringify(item.tagList),
+                            slug: JSON.stringify(item.slug),
+                            body: JSON.stringify(item.body),
                         }
-                    }} className="link">
+                    }}
+                    >
                         <h3>{item.title}</h3>
                         <p>{item.description}</p>
                         <Styled.ContentTagContainer>
@@ -50,7 +52,7 @@ function ContentItem(props: { articleArray: Array<any>, likeSubmit: any, disLike
                                 }
                             </Styled.ContentUlTag>
                         </Styled.ContentTagContainer>
-                    </Link>
+                    </Styled.ContentLink>
                 </Styled.ContentBodyContainer>
                 <hr />
             </Fragment>

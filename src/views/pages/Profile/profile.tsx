@@ -1,5 +1,5 @@
 import Header from "../../../components/Header/header";
-import Banner from "../Common/banner";
+import Banner from "../../../components/Banner/banner";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import UserProfile from "./userProfile";

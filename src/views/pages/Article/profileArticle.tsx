@@ -5,10 +5,13 @@ import './css/article.css';
 import axios from 'axios';
 import {MakeDate,MakeIndex} from '../../../helpers/module';
 import { autorun } from 'mobx';
-import MyMobxTag from './mobx-article-tag';
+import {observer} from 'mobx-react-lite';
+import MyMobxTag from '../../../stores/Article/mobx-article-tag';
+import {API_URL} from '../../../constants/constants';
 
-function ProfileArticle(props: { profile: any }) {
-    const [article, setArticle] = useState<[Array<any>, number]>([[], 0]);
+const ProfileArticle = observer((props: { profile: any }) => {
+    const article = MyMobxTag.getArticle();
+    const articleCount = MyMobxTag.getArticleCount();
     const [curProfileTag, setcurProfileTag] = useState<string>("");
     const [preProfileTag, setpreProfileTag] = useState<string>("");
 
@@ -24,63 +27,76 @@ function ProfileArticle(props: { profile: any }) {
                 }
             };
         }
-        const { curTag, testpage } = MyMobxTag.getTag();
+        const { testpage } = MyMobxTag.getTag();
         const page = testpage * 5;
+        
         // myarticle and first page
         if (curProfileTag === "" && page === 0) {
-            axios
-                .get(`https://conduit.productionready.io/api/articles?author=${profileUsername}&limit=5&offset=0`, headers)
+            if(curProfileTag === preProfileTag) {
+                axios
+                .get(`${API_URL}/articles?author=${profileUsername}&limit=5&offset=0`, headers)
                 .then((res: any) => {
                     const articleArray: Array<any> = res.data.articles;
                     let totalArticles: number = res.data.articlesCount;
                     console.log(totalArticles / 5); 
-                    setArticle([articleArray.map((item : any)=> (
+                    MyMobxTag.setArticle(articleArray.map((item : any)=> (
                         {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
-                    )), totalArticles / 5]);
-                });
+                    )));
+                    MyMobxTag.setArticleCount(totalArticles / 5);
+                });   
+            }
+            else {
+                setpreProfileTag(curProfileTag);
+            }
         }
         else if (curProfileTag !== "" && page === 0) {
-            axios
-                .get(`https://conduit.productionready.io/api/articles?favorited=${profileUsername}&limit=5`, headers)
+            if(curProfileTag === preProfileTag) {
+                axios
+                .get(`${API_URL}/articles?favorited=${profileUsername}&limit=5`, headers)
                 .then((res: any) => {
                     const articleArray: Array<any> = res.data.articles;
                     let totalArticles: number = res.data.articlesCount;
-                    setArticle([articleArray.map((item : any)=> (
+                    MyMobxTag.setArticle(articleArray.map((item : any)=> (
                         {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
-                    )), totalArticles / 5]);
+                    )));
+                    MyMobxTag.setArticleCount(totalArticles / 5);
                     setpreProfileTag(curProfileTag);
 
                 });
+            }
+            else {
+                setpreProfileTag(curProfileTag);
+            }
         }
         else if (curProfileTag !== "" && page !== 0) {
             if (curProfileTag === preProfileTag) {
                 axios
-                    .get(`https://conduit.productionready.io/api/articles?favorited=${profileUsername}&limit=5&offset=${page}`, headers)
+                    .get(`${API_URL}/articles?favorited=${profileUsername}&limit=5&offset=${page}`, headers)
                     .then((res: any) => {
                         const articleArray: Array<any> = res.data.articles;
-                        setArticle([articleArray.map((item : any)=> (
+                        MyMobxTag.setArticle(articleArray.map((item : any)=> (
                             {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
-                        )), article[1]]);
+                        )));
                     });
             }
             else {
-                // setCurPage(0);
+                MyMobxTag.setTag({curTag : "", testpage : 0});
                 setpreProfileTag(curProfileTag);
             }
         }
         else if (curProfileTag === "" && page !== 0) {
             if (curProfileTag === preProfileTag) {
                 axios
-                    .get(`https://conduit.productionready.io/api/articles?author=${profileUsername}&limit=5&offset=${page}`, headers)
+                    .get(`${API_URL}/articles?author=${profileUsername}&limit=5&offset=${page}`, headers)
                     .then((res: any) => {
                         const articleArray: Array<any> = res.data.articles;
-                        setArticle([articleArray.map((item : any)=> (
+                        MyMobxTag.setArticle(articleArray.map((item : any)=> (
                             {...item,createdAt : MakeDate(item.createdAt), unique : MakeIndex()}
-                        )), article[1]]);
+                        )));
                     });
             }
             else {
-                // setCurPage(0);
+                MyMobxTag.setTag({curTag : "favorite", testpage : 0});
                 setpreProfileTag(curProfileTag);
             }
         }
@@ -89,7 +105,7 @@ function ProfileArticle(props: { profile: any }) {
     const handleLikeSubmit = (slug: any) => {
 
         axios
-            .post(`https://conduit.productionready.io/api/articles/${slug}/favorite`, {}, {
+            .post(`${API_URL}/articles/${slug}/favorite`, {}, {
                 headers: {
                     "Authorization": `Token ${localStorage.getItem('token')}`
                 }
@@ -107,7 +123,7 @@ function ProfileArticle(props: { profile: any }) {
 
     const handleDisLikeSubmit = (slug: any) => {
         axios
-            .delete(`https://conduit.productionready.io/api/articles/${slug}/favorite`, {
+            .delete(`${API_URL}/articles/${slug}/favorite`, {
                 headers: {
                     "Authorization": `Token ${localStorage.getItem('token')}`
                 }
@@ -121,14 +137,13 @@ function ProfileArticle(props: { profile: any }) {
     };
 
     return (
-
         <div className="row">
-            <ArticleDataLeft article={article} likeSubmit={handleLikeSubmit} disLikeSubmit={handleDisLikeSubmit}
+            <ArticleDataLeft article={[article,articleCount]} likeSubmit={handleLikeSubmit} disLikeSubmit={handleDisLikeSubmit}
                 profile={props.profile}
                 curProfileTag={[curProfileTag, setcurProfileTag]} preProfileTag={[preProfileTag, setpreProfileTag]} />
             <TagList tagList={[]} profile={props.profile}/>
         </div>
     );
-}
+});
 
 export default ProfileArticle;

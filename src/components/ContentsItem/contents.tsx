@@ -1,5 +1,5 @@
 import ContentItem from "./content_item";
-import Pagination from "../../views/pages/Common/pagination";
+import Pagination from "../Pagination/pagination";
 
 function Contents(props : {article : [Array<any>,number],likeSubmit : any,disLikeSubmit : any,profile : boolean}) {
     return (
